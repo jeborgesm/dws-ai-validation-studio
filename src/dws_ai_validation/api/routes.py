@@ -1,5 +1,6 @@
 from pathlib import Path
 from tempfile import NamedTemporaryFile
+from typing import Annotated
 
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
 
@@ -14,7 +15,7 @@ router = APIRouter()
     response_model=DatasetProfile,
     tags=["dataset validation"],
 )
-async def profile_dataset(file: UploadFile = File(...)) -> DatasetProfile:
+async def profile_dataset(file: Annotated[UploadFile, File()],) -> DatasetProfile:
     file_name = file.filename or "uploaded.csv"
     if not file_name.lower().endswith(".csv"):
         raise HTTPException(
