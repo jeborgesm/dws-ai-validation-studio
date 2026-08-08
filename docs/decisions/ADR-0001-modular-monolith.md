@@ -15,7 +15,7 @@ Start with a modular monolith organized by clear responsibilities. Preserve boun
 
 ### Microservices from day one
 
-Rejected because it would optimize for hypothetical scale while slowing learning and increasing failure modes.
+Rejected because it would optimize for hypothetical scale while slowing delivery and increasing failure modes.
 
 ### Single-script notebook
 

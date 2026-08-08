@@ -2,7 +2,7 @@
 
 ## Scope
 
-This document identifies material risks for the public learning implementation. It is not a formal certification or complete production security assessment.
+This document identifies material risks for the public proof-of-concept implementation. It is not a formal certification or complete production security assessment.
 
 ## Assets
 
@@ -69,4 +69,4 @@ This document identifies material risks for the public learning implementation. 
 
 ## Residual risk
 
-Milestone 0 is suitable for local learning with safe datasets. It is not suitable for untrusted public hosting or regulated production data.
+Milestone 0 is suitable for local demonstration and validation with safe datasets. It is not suitable for untrusted public hosting or regulated production data.

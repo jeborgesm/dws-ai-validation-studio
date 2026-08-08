@@ -1,0 +1,287 @@
+[1mdiff --git a/CHANGELOG.md b/CHANGELOG.md[m
+[1mindex 8ef6703..5113c7d 100644[m
+[1m--- a/CHANGELOG.md[m
+[1m+++ b/CHANGELOG.md[m
+[36m@@ -12,4 +12,4 @@[m [mAll notable changes will be documented in this file.[m
+ - Typed Pydantic report contracts.[m
+ - Automated unit and API tests.[m
+ - GitHub Actions quality pipeline.[m
+[31m-- Foundation architecture, governance boundary, threat model, ADRs, testing strategy, learning guide, and operational documentation.[m
+[32m+[m[32m- Foundation architecture, governance boundary, threat model, ADRs, testing strategy, engineering reference guides, and operational documentation.[m
+[1mdiff --git a/CONTRIBUTING.md b/CONTRIBUTING.md[m
+[1mindex 355f85b..735f55c 100644[m
+[1m--- a/CONTRIBUTING.md[m
+[1m+++ b/CONTRIBUTING.md[m
+[36m@@ -1,6 +1,6 @@[m
+ # Contributing[m
+ [m
+[31m-This repository is a public learning and portfolio project. Contributions should preserve its evidence-first and responsible-use goals.[m
+[32m+[m[32mThis repository is a public proof of concept and engineering reference implementation. Contributions should preserve its evidence-first and responsible-use goals.[m
+ [m
+ ## Before opening a change[m
+ [m
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 81f7103..9a25d89 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -2,11 +2,11 @@[m
+ [m
+ [![CI](https://github.com/jeborgesm/dws-ai-validation-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/jeborgesm/dws-ai-validation-studio/actions/workflows/ci.yml)[m
+ [m
+[31m-An enterprise-style AI/ML validation and governance platform built as a public learning and evidence repository.[m
+[32m+[m[32mAn enterprise-style AI/ML validation and governance platform implemented as a public proof of concept and evidence repository.[m
+ [m
+[31m-## Why it exists[m
+[32m+[m[32m## Project purpose[m
+ [m
+[31m-This project turns Python and AI/ML validation learning into visible, defensible evidence. It is deliberately more than a tutorial: each capability is supported by working code, automated tests, architecture decisions, governance documentation, limitations, and reproducible examples.[m
+[32m+[m[32mThis project demonstrates how an enterprise AI/ML validation and governance platform can be designed, implemented, and evolved using modern engineering practices. Every capability is backed by working code, automated tests, architecture decision records (ADRs), governance documentation, clearly documented limitations, and reproducible validation examples.[m
+ [m
+ ## Demonstrated and planned capabilities[m
+ [m
+[36m@@ -77,7 +77,7 @@[m [mmypy src[m
+ pytest[m
+ ```[m
+ [m
+[31m-## Documentation designed for technical defense[m
+[32m+[m[32m## Documentation and engineering justification[m
+ [m
+ - [Project charter](docs/project-management/project-charter.md)[m
+ - [Foundation architecture](docs/architecture/foundation.md)[m
+[36m@@ -88,8 +88,8 @@[m [mpytest[m
+ - [Threat model](docs/governance/threat-model.md)[m
+ - [Model governance lifecycle](docs/governance/model-governance-lifecycle.md)[m
+ - [Architecture decisions](docs/decisions/)[m
+[31m-- [Project defense guide](docs/learning/project-defense-guide.md)[m
+[31m-- [Python for .NET engineers](docs/learning/python-for-dotnet-engineers.md)[m
+[32m+[m[32m- [Engineering justification guide](docs/guides/engineering-justification-guide.md)[m
+[32m+[m[32m- [Python reference for .NET engineers](docs/guides/python-for-dotnet-engineers.md)[m
+ - [Glossary](docs/glossary.md)[m
+ [m
+ ## Roadmap[m
+[1mdiff --git a/docs/README.md b/docs/README.md[m
+[1mindex 98b0e4b..251ec7b 100644[m
+[1m--- a/docs/README.md[m
+[1m+++ b/docs/README.md[m
+[36m@@ -1,6 +1,6 @@[m
+ # Documentation Map[m
+ [m
+[31m-This directory is the authoritative technical and governance record for DWS AI Validation Studio. The project deliberately treats documentation as a first-class engineering deliverable because AI/ML validation work must be explainable, reproducible, reviewable, and defensible.[m
+[32m+[m[32mThis directory is the authoritative technical and governance record for DWS AI Validation Studio. The project deliberately treats documentation as a first-class engineering deliverable because AI/ML validation work must be explainable, reproducible, reviewable, and supported by clear engineering justification.[m
+ [m
+ ## Start here[m
+ [m
+[36m@@ -12,7 +12,7 @@[m [mThis directory is the authoritative technical and governance record for DWS AI V[m
+ 4. [Validation methodology](quality/validation-methodology.md)[m
+ 5. [Responsible use and data boundary](governance/responsible-use.md)[m
+ 6. [Threat model](governance/threat-model.md)[m
+[31m-7. [Learning and defense guide](learning/project-defense-guide.md)[m
+[32m+[m[32m7. [Engineering justification guide](guides/engineering-justification-guide.md)[m
+ [m
+ ## Visual architecture guide[m
+ [m
+[1mdiff --git a/docs/architecture/foundation.md b/docs/architecture/foundation.md[m
+[1mindex ecd1dc6..832fa97 100644[m
+[1m--- a/docs/architecture/foundation.md[m
+[1m+++ b/docs/architecture/foundation.md[m
+[36m@@ -2,11 +2,11 @@[m
+ [m
+ ## Architectural intent[m
+ [m
+[31m-Milestone 0 uses a deliberately small modular architecture. The purpose is to learn Python idioms while preserving enterprise qualities: separation of concerns, typed contracts, deterministic behavior, testability, explicit failure handling, and an incremental path toward cloud deployment.[m
+[32m+[m[32mMilestone 0 uses a deliberately small modular architecture to establish enterprise qualities from the first working vertical slice: separation of concerns, typed contracts, deterministic behavior, testability, explicit failure handling, and an incremental path toward cloud deployment.[m
+ [m
+ ![DWS AI Validation Studio executive overview](diagrams/01-executive-overview.svg)[m
+ [m
+[31m-The diagram is intentionally high level. The sections below define the architectural responsibilities and boundaries that make the current implementation defensible.[m
+[32m+[m[32mThe diagram is intentionally high level. The sections below define the architectural responsibilities, boundaries, and rationale that justify the current implementation.[m
+ [m
+ ## Design principles[m
+ [m
+[36m@@ -59,6 +59,6 @@[m [mThe target architecture is a roadmap, not a description of Milestone 0. Planned[m
+ [m
+ AI assistance is a projected capability rather than an implemented Milestone 0 feature. The concept is to use agents or AI-assisted services to help explain evidence, identify review gaps, recommend additional validation work, and draft reports while keeping final governance decisions with a human reviewer.[m
+ [m
+[31m-## Why this remains defensible[m
+[32m+[m[32m## Engineering justification[m
+ [m
+ The architecture is intentionally proportional to the current problem. It does not claim future controls are already implemented, and each planned addition is tied to a concrete capability rather than technology for its own sake.[m
+[1mdiff --git a/docs/architecture/system-context.md b/docs/architecture/system-context.md[m
+[1mindex 065649c..ce1ab4a 100644[m
+[1m--- a/docs/architecture/system-context.md[m
+[1m+++ b/docs/architecture/system-context.md[m
+[36m@@ -2,7 +2,7 @@[m
+ [m
+ ## Context[m
+ [m
+[31m-DWS AI Validation Studio receives a dataset or model-related artifact, performs validation work, records findings, and produces evidence that a human reviewer can inspect. It is designed as a learning platform and portfolio reference, but follows enterprise engineering practices.[m
+[32m+[m[32mDWS AI Validation Studio receives a dataset or model-related artifact, performs validation work, records findings, and produces evidence that a human reviewer can inspect. It is implemented as a public proof of concept and reference platform that applies enterprise engineering practices.[m
+ [m
+ ## Current Milestone 0 flow[m
+ [m
+[1mdiff --git a/docs/decisions/ADR-0001-modular-monolith.md b/docs/decisions/ADR-0001-modular-monolith.md[m
+[1mindex 23947e6..c9efbb8 100644[m
+[1m--- a/docs/decisions/ADR-0001-modular-monolith.md[m
+[1m+++ b/docs/decisions/ADR-0001-modular-monolith.md[m
+[36m@@ -15,7 +15,7 @@[m [mStart with a modular monolith organized by clear responsibilities. Preserve boun[m
+ [m
+ ### Microservices from day one[m
+ [m
+[31m-Rejected because it would optimize for hypothetical scale while slowing learning and increasing failure modes.[m
+[32m+[m[32mRejected because it would optimize for hypothetical scale while slowing delivery and increasing failure modes.[m
+ [m
+ ### Single-script notebook[m
+ [m
+[1mdiff --git a/docs/governance/model-governance-lifecycle.md b/docs/governance/model-governance-lifecycle.md[m
+[1mindex d6ce8cc..33a1fb3 100644[m
+[1m--- a/docs/governance/model-governance-lifecycle.md[m
+[1m+++ b/docs/governance/model-governance-lifecycle.md[m
+[36m@@ -27,4 +27,4 @@[m
+ [m
+ ## Separation of duties[m
+ [m
+[31m-The project will demonstrate a distinction between model developer, validator, and approver even when one person performs all roles in the learning environment. The role distinction matters because it exposes conflicts and clarifies which evidence each responsibility requires.[m
+[32m+[m[32mThe project will demonstrate a distinction between model developer, validator, and approver even when one person performs all roles in the proof-of-concept environment. The role distinction matters because it exposes conflicts and clarifies which evidence each responsibility requires.[m
+[1mdiff --git a/docs/governance/threat-model.md b/docs/governance/threat-model.md[m
+[1mindex 9cea797..19dda14 100644[m
+[1m--- a/docs/governance/threat-model.md[m
+[1m+++ b/docs/governance/threat-model.md[m
+[36m@@ -2,7 +2,7 @@[m
+ [m
+ ## Scope[m
+ [m
+[31m-This document identifies material risks for the public learning implementation. It is not a formal certification or complete production security assessment.[m
+[32m+[m[32mThis document identifies material risks for the public proof-of-concept implementation. It is not a formal certification or complete production security assessment.[m
+ [m
+ ## Assets[m
+ [m
+[36m@@ -69,4 +69,4 @@[m [mThis document identifies material risks for the public learning implementation.[m
+ [m
+ ## Residual risk[m
+ [m
+[31m-Milestone 0 is suitable for local learning with safe datasets. It is not suitable for untrusted public hosting or regulated production data.[m
+[32m+[m[32mMilestone 0 is suitable for local demonstration and validation with safe datasets. It is not suitable for untrusted public hosting or regulated production data.[m
+[1mdiff --git a/docs/learning/project-defense-guide.md b/docs/learning/project-defense-guide.md[m
+[1mdeleted file mode 100644[m
+[1mindex 08426cc..0000000[m
+[1m--- a/docs/learning/project-defense-guide.md[m
+[1m+++ /dev/null[m
+[36m@@ -1,61 +0,0 @@[m
+[31m-# Project Defense Guide[m
+[31m-[m
+[31m-This guide prepares the author to explain not only what was built, but why each decision was made and where the system is intentionally incomplete.[m
+[31m-[m
+[31m-## Thirty-second explanation[m
+[31m-[m
+[31m-DWS AI Validation Studio is an enterprise-style Python platform that validates datasets and machine-learning models, produces model-governance evidence, and will integrate with AWS SageMaker, PostgreSQL, Power BI, Power Automate, and SharePoint. It is built publicly with synthetic data so every capability is supported by inspectable code, tests, architecture decisions, and documentation.[m
+[31m-[m
+[31m-## Why Python?[m
+[31m-[m
+[31m-Python provides direct access to the data and ML ecosystem used by pandas, scikit-learn, SHAP, and SageMaker. Using Python in the core demonstrates the missing skill rather than hiding it behind an already familiar .NET layer.[m
+[31m-[m
+[31m-## Why FastAPI?[m
+[31m-[m
+[31m-FastAPI uses Python type hints and Pydantic to produce validated contracts and OpenAPI documentation with little ceremony. It allows the project to demonstrate disciplined service development rather than isolated scripts.[m
+[31m-[m
+[31m-## Why not begin with SageMaker?[m
+[31m-[m
+[31m-Cloud tooling should not obscure the underlying validation concepts. The project first establishes deterministic local behavior, tests, and evidence. SageMaker is introduced after the data and model lifecycle is understood, making the cloud implementation easier to explain and less dependent on vendor-specific terminology.[m
+[31m-[m
+[31m-## Why a modular monolith?[m
+[31m-[m
+[31m-The domain boundaries are still being discovered. A modular monolith minimizes distributed complexity while preserving separations that can later support extraction if scale, security, or release independence justify it.[m
+[31m-[m
+[31m-## Why are the Milestone 0 thresholds simplistic?[m
+[31m-[m
+[31m-They are intentionally transparent demonstration defaults. The repository records observed values and thresholds and explicitly states that real thresholds depend on business purpose, data semantics, and risk. A later milestone will make plans configurable and versioned.[m
+[31m-[m
+[31m-## What makes this model validation rather than only data profiling?[m
+[31m-[m
+[31m-Milestone 0 establishes the data-validation foundation. Later milestones add holdout evaluation, metrics, robustness, explainability, fairness, reproducibility, drift, governance states, and monitoring. The roadmap and data structures are designed around the complete lifecycle.[m
+[31m-[m
+[31m-## What would prevent production use today?[m
+[31m-[m
+[31m-No authentication, authorization, persistent audit store, file-size limit, malware scanning, content sniffing, object storage, secret management, cloud controls, or formal validation policy exists yet. The repository labels these gaps rather than implying production readiness.[m
+[31m-[m
+[31m-## How does prior enterprise experience transfer?[m
+[31m-[m
+[31m-The project applies established engineering skills—architecture, API design, SQL, testing, requirements analysis, auditability, workflow, security thinking, and regulatory documentation—to the Python and AI/ML ecosystem. The learning challenge is the ML-specific lifecycle and tooling, not learning software engineering from zero.[m
+[31m-[m
+[31m-## Hard questions to expect[m
+[31m-[m
+[31m-### Is a model card proof of compliance?[m
+[31m-[m
+[31m-No. It is a structured communication artifact. Its quality depends on accurate evidence, appropriate review, and the governing policy.[m
+[31m-[m
+[31m-### Does explainability prove fairness or correctness?[m
+[31m-[m
+[31m-No. Explainability can help investigate behavior, but it can be unstable, approximate, and easy to misinterpret. It is one part of validation evidence.[m
+[31m-[m
+[31m-### Can drift be detected without labels?[m
+[31m-[m
+[31m-Input or prediction distribution drift can be detected without labels, but actual performance degradation usually requires delayed ground truth or useful proxies.[m
+[31m-[m
+[31m-### Why is accuracy not enough?[m
+[31m-[m
+[31m-Accuracy can hide class imbalance and unequal error costs. Metrics must match the decision context, such as precision, recall, F1, ROC-AUC, PR-AUC, calibration, and subgroup performance.[m
+[31m-[m
+[31m-### What is the difference between verification and validation?[m
+[31m-[m
+[31m-Verification asks whether the system was built according to specification. Validation asks whether it is fit for its intended purpose and operating context.[m
+[1mdiff --git a/docs/learning/python-for-dotnet-engineers.md b/docs/learning/python-for-dotnet-engineers.md[m
+[1mdeleted file mode 100644[m
+[1mindex 2c6a613..0000000[m
+[1m--- a/docs/learning/python-for-dotnet-engineers.md[m
+[1m+++ /dev/null[m
+[36m@@ -1,38 +0,0 @@[m
+[31m-# Python Notes for an Experienced .NET Engineer[m
+[31m-[m
+[31m-## Mental model[m
+[31m-[m
+[31m-Python is dynamically executed but can be developed with strong discipline through type hints, static analysis, tests, immutable conventions, small modules, and explicit contracts.[m
+[31m-[m
+[31m-## Key differences to internalize[m
+[31m-[m
+[31m-- Indentation is syntax.[m
+[31m-- Type hints are not runtime enforcement unless a library validates them.[m
+[31m-- `None` is the null value and optionality should be explicit.[m
+[31m-- Iterables, generators, comprehensions, and context managers are central idioms.[m
+[31m-- Exceptions are commonly used for error propagation, but public boundaries should map them intentionally.[m
+[31m-- Virtual environments isolate project dependencies.[m
+[31m-- Modules and packages replace assembly/namespace expectations in different ways.[m
+[31m-- Duck typing is common, but protocols and abstract base classes can express interfaces.[m
+[31m-- Dataclasses and Pydantic models serve different purposes.[m
+[31m-[m
+[31m-## Quality tools selected[m
+[31m-[m
+[31m-- Ruff: formatting-compatible linting and import/order checks.[m
+[31m-- mypy strict mode: catches missing and inconsistent type assumptions.[m
+[31m-- pytest: concise deterministic tests and fixtures.[m
+[31m-- Pydantic: runtime validation at external boundaries.[m
+[31m-[m
+[31m-## Mapping familiar concepts[m
+[31m-[m
+[31m-| .NET concept | Python project equivalent |[m
+[31m-|---|---|[m
+[31m-| ASP.NET controller/minimal API | FastAPI route |[m
+[31m-| DTO with validation attributes | Pydantic model |[m
+[31m-| NuGet package | PyPI package |[m
+[31m-| `.csproj` | `pyproject.toml` |[m
+[31m-| xUnit/NUnit | pytest |[m
+[31m-| Roslyn analyzers | Ruff and mypy |[m
+[31m-| `using` / `IDisposable` | context manager / `with` |[m
+[31m-| LINQ pipeline | comprehensions, iterators, pandas operations |[m
+[31m-| Interface | Protocol or abstract base class |[m
+[1mdiff --git a/docs/project-management/project-charter.md b/docs/project-management/project-charter.md[m
+[1mindex 19702f0..4ddaee7 100644[m
+[1m--- a/docs/project-management/project-charter.md[m
+[1m+++ b/docs/project-management/project-charter.md[m
+[36m@@ -36,7 +36,7 @@[m [mThe project was created to close demonstrable experience gaps without relying on[m
+ - Hiring managers evaluating Python and AI/ML validation capability.[m
+ - Engineers reviewing architecture and implementation choices.[m
+ - Governance, risk, and compliance practitioners evaluating traceability.[m
+[31m-- The project author, as a structured learning and interview-preparation system.[m
+[32m+[m[32m- Engineers and technical reviewers using the repository as a reference for implementation patterns, architectural rationale, and reproducible validation evidence.[m
+ [m
+ ## Success criteria[m
+ [m

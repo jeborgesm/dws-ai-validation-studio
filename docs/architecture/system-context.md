@@ -2,7 +2,7 @@
 
 ## Context
 
-DWS AI Validation Studio receives a dataset or model-related artifact, performs validation work, records findings, and produces evidence that a human reviewer can inspect. It is designed as a learning platform and portfolio reference, but follows enterprise engineering practices.
+DWS AI Validation Studio receives a dataset or model-related artifact, performs validation work, records findings, and produces evidence that a human reviewer can inspect. It is implemented as a public proof of concept and reference platform that applies enterprise engineering practices.
 
 ## Current Milestone 0 flow
 

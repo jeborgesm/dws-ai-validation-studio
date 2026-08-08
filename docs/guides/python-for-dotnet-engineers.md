@@ -1,4 +1,4 @@
-# Python Notes for an Experienced .NET Engineer
+# Python Reference for Experienced .NET Engineers
 
 ## Mental model
 

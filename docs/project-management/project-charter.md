@@ -36,7 +36,7 @@ The project was created to close demonstrable experience gaps without relying on
 - Hiring managers evaluating Python and AI/ML validation capability.
 - Engineers reviewing architecture and implementation choices.
 - Governance, risk, and compliance practitioners evaluating traceability.
-- The project author, as a structured learning and interview-preparation system.
+- Engineers and technical reviewers using the repository as a reference for implementation patterns, architectural rationale, and reproducible validation evidence.
 
 ## Success criteria
 

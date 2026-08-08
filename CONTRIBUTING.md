@@ -1,6 +1,6 @@
 # Contributing
 
-This repository is a public learning and portfolio project. Contributions should preserve its evidence-first and responsible-use goals.
+This repository is a public proof of concept and engineering reference implementation. Contributions should preserve its evidence-first and responsible-use goals.
 
 ## Before opening a change
 
