@@ -1,6 +1,6 @@
 # Documentation Map
 
-This directory is the authoritative technical and governance record for DWS AI Validation Studio. The project deliberately treats documentation as a first-class engineering deliverable because AI/ML validation work must be explainable, reproducible, reviewable, and defensible.
+This directory is the authoritative technical and governance record for DWS AI Validation Studio. The project deliberately treats documentation as a first-class engineering deliverable because AI/ML validation work must be explainable, reproducible, reviewable, and supported by clear engineering justification.
 
 ## Start here
 
@@ -12,7 +12,7 @@ This directory is the authoritative technical and governance record for DWS AI V
 4. [Validation methodology](quality/validation-methodology.md)
 5. [Responsible use and data boundary](governance/responsible-use.md)
 6. [Threat model](governance/threat-model.md)
-7. [Learning and defense guide](learning/project-defense-guide.md)
+7. [Engineering justification guide](guides/engineering-justification-guide.md)
 
 ## Visual architecture guide
 

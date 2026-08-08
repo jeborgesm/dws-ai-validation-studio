@@ -1,6 +1,6 @@
-# Project Defense Guide
+# Engineering Justification Guide
 
-This guide prepares the author to explain not only what was built, but why each decision was made and where the system is intentionally incomplete.
+This guide records the engineering rationale behind the project: what was built, why key decisions were made, which trade-offs were accepted, and where the system is intentionally incomplete.
 
 ## Thirty-second explanation
 
@@ -8,7 +8,7 @@ DWS AI Validation Studio is an enterprise-style Python platform that validates d
 
 ## Why Python?
 
-Python provides direct access to the data and ML ecosystem used by pandas, scikit-learn, SHAP, and SageMaker. Using Python in the core demonstrates the missing skill rather than hiding it behind an already familiar .NET layer.
+Python provides direct access to the data and ML ecosystem used by pandas, scikit-learn, SHAP, and SageMaker. Using Python in the core keeps the implementation aligned with the data and ML ecosystem rather than introducing an unnecessary .NET abstraction around Python-first tooling.
 
 ## Why FastAPI?
 
@@ -36,7 +36,7 @@ No authentication, authorization, persistent audit store, file-size limit, malwa
 
 ## How does prior enterprise experience transfer?
 
-The project applies established engineering skills—architecture, API design, SQL, testing, requirements analysis, auditability, workflow, security thinking, and regulatory documentation—to the Python and AI/ML ecosystem. The learning challenge is the ML-specific lifecycle and tooling, not learning software engineering from zero.
+The project applies established engineering practices—architecture, API design, SQL, testing, requirements analysis, auditability, workflow, security thinking, and governance documentation—to the Python and AI/ML ecosystem. The implementation itself provides the evidence; this guide supplies the rationale and context needed to evaluate those decisions.
 
 ## Hard questions to expect
 

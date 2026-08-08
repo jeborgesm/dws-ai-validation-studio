@@ -2,11 +2,11 @@
 
 [![CI](https://github.com/jeborgesm/dws-ai-validation-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/jeborgesm/dws-ai-validation-studio/actions/workflows/ci.yml)
 
-An enterprise-style AI/ML validation and governance platform built as a public learning and evidence repository.
+An enterprise-style AI/ML validation and governance platform implemented as a public proof of concept and evidence repository.
 
-## Why it exists
+## Project purpose
 
-This project turns Python and AI/ML validation learning into visible, defensible evidence. It is deliberately more than a tutorial: each capability is supported by working code, automated tests, architecture decisions, governance documentation, limitations, and reproducible examples.
+This project demonstrates how an enterprise AI/ML validation and governance platform can be designed, implemented, and evolved using modern engineering practices. Every capability is backed by working code, automated tests, architecture decision records (ADRs), governance documentation, clearly documented limitations, and reproducible validation examples.
 
 ## Demonstrated and planned capabilities
 
@@ -77,7 +77,7 @@ mypy src
 pytest
 ```
 
-## Documentation designed for technical defense
+## Documentation and engineering justification
 
 - [Project charter](docs/project-management/project-charter.md)
 - [Foundation architecture](docs/architecture/foundation.md)
@@ -88,8 +88,8 @@ pytest
 - [Threat model](docs/governance/threat-model.md)
 - [Model governance lifecycle](docs/governance/model-governance-lifecycle.md)
 - [Architecture decisions](docs/decisions/)
-- [Project defense guide](docs/learning/project-defense-guide.md)
-- [Python for .NET engineers](docs/learning/python-for-dotnet-engineers.md)
+- [Engineering justification guide](docs/guides/engineering-justification-guide.md)
+- [Python reference for .NET engineers](docs/guides/python-for-dotnet-engineers.md)
 - [Glossary](docs/glossary.md)
 
 ## Roadmap

@@ -12,4 +12,4 @@ All notable changes will be documented in this file.
 - Typed Pydantic report contracts.
 - Automated unit and API tests.
 - GitHub Actions quality pipeline.
-- Foundation architecture, governance boundary, threat model, ADRs, testing strategy, learning guide, and operational documentation.
+- Foundation architecture, governance boundary, threat model, ADRs, testing strategy, engineering reference guides, and operational documentation.

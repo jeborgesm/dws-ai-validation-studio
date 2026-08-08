@@ -2,11 +2,11 @@
 
 ## Architectural intent
 
-Milestone 0 uses a deliberately small modular architecture. The purpose is to learn Python idioms while preserving enterprise qualities: separation of concerns, typed contracts, deterministic behavior, testability, explicit failure handling, and an incremental path toward cloud deployment.
+Milestone 0 uses a deliberately small modular architecture to establish enterprise qualities from the first working vertical slice: separation of concerns, typed contracts, deterministic behavior, testability, explicit failure handling, and an incremental path toward cloud deployment.
 
 ![DWS AI Validation Studio executive overview](diagrams/01-executive-overview.svg)
 
-The diagram is intentionally high level. The sections below define the architectural responsibilities and boundaries that make the current implementation defensible.
+The diagram is intentionally high level. The sections below define the architectural responsibilities, boundaries, and rationale that justify the current implementation.
 
 ## Design principles
 
@@ -59,6 +59,6 @@ The target architecture is a roadmap, not a description of Milestone 0. Planned 
 
 AI assistance is a projected capability rather than an implemented Milestone 0 feature. The concept is to use agents or AI-assisted services to help explain evidence, identify review gaps, recommend additional validation work, and draft reports while keeping final governance decisions with a human reviewer.
 
-## Why this remains defensible
+## Engineering justification
 
 The architecture is intentionally proportional to the current problem. It does not claim future controls are already implemented, and each planned addition is tied to a concrete capability rather than technology for its own sake.

@@ -27,4 +27,4 @@
 
 ## Separation of duties
 
-The project will demonstrate a distinction between model developer, validator, and approver even when one person performs all roles in the learning environment. The role distinction matters because it exposes conflicts and clarifies which evidence each responsibility requires.
+The project will demonstrate a distinction between model developer, validator, and approver even when one person performs all roles in the proof-of-concept environment. The role distinction matters because it exposes conflicts and clarifies which evidence each responsibility requires.
