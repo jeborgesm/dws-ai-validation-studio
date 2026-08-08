@@ -1,40 +1,109 @@
-# ADR-0002: Use Python and FastAPI for Validation Services
+# ADR-0002 — Python and FastAPI for Analytics & AI Services
 
-- Status: Accepted
-- Date: 2026-08-06
+**Status:** Accepted
 
 ## Context
 
-Python is the dominant practical language across data preparation, machine learning, model evaluation, explainability, and AWS SageMaker examples. The project also needs a typed, testable HTTP boundary.
+The Decision Support Platform combines traditional enterprise application development with analytics, AI-assisted capabilities, and evidence-driven decision support.
+
+The platform's long-term roadmap includes:
+
+- Data profiling and quality assessment
+- Statistical analysis
+- AI-assisted recommendations
+- Model evaluation
+- Explainability
+- Enterprise integrations
+- Operational reporting
+
+No single technology stack is equally well suited to every capability.
 
 ## Decision
 
-Use Python 3.12+ and FastAPI for the validation service.
+The platform adopts a polyglot architecture.
 
-## Why FastAPI
+- **.NET** remains the primary platform for enterprise application development and long-term business services.
+- **Python** is used where its mature ecosystem provides significant advantages for analytics, scientific computing, machine learning, and AI integration.
+- **FastAPI** provides the HTTP interface for Python-based services through strongly typed APIs.
 
-- Native type-hint integration.
-- Pydantic request and response validation.
-- Automatic OpenAPI documentation.
-- Strong fit for small service boundaries.
-- Straightforward testing through ASGI clients.
+## Rationale
 
-## Alternatives considered
+### Use the Right Tool for the Right Responsibility
 
-### Flask
+Python provides an extensive ecosystem for:
 
-Mature and flexible, but requires more manual contract and schema work for this project's evidence goals.
+- data analysis
+- statistics
+- machine learning
+- AI frameworks
+- scientific computing
+- model evaluation
+- data quality analysis
 
-### Django
+These capabilities complement the enterprise strengths of .NET rather than replacing them.
 
-Capable but heavier than needed for the initial API and validation core.
+### Strong API Contracts
 
-### .NET API only
+FastAPI was selected because it offers:
 
-The author already has strong .NET evidence. A .NET host may be added later, but using Python for the core directly demonstrates the missing capability and aligns with the ML ecosystem.
+- high performance
+- automatic OpenAPI documentation
+- native async support
+- excellent integration with Pydantic
+- first-class type hints
+- consistent REST APIs
+
+These characteristics simplify integration between platform components.
+
+### Enterprise Integration
+
+The architecture is intentionally designed to integrate with technologies such as:
+
+- PostgreSQL
+- AWS services (including SageMaker and Amazon S3)
+- Power BI
+- Power Automate
+- SharePoint Online
+- ServiceNow
+- GitHub Actions
+
+Python serves as one component within this broader enterprise architecture.
+
+### Maintainability
+
+Separating analytics and AI-oriented capabilities into Python services allows the platform to evolve those capabilities independently while preserving stable business interfaces.
 
 ## Consequences
 
-- Python quality practices must be learned and enforced, not treated as scripting shortcuts.
-- Dependency and environment management become part of the project evidence.
-- The system can later demonstrate polyglot integration with .NET or Blazor without hiding Python behind another stack.
+### Positive
+
+- Access to mature analytics and AI ecosystems
+- Strongly typed APIs
+- Excellent interoperability
+- Clear technology boundaries
+- Easier future expansion
+
+### Trade-offs
+
+- Multiple technology stacks require consistent engineering standards.
+- Teams must maintain expertise across both .NET and Python.
+- Cross-language integration requires disciplined API contracts.
+
+These trade-offs are justified by the capabilities gained.
+
+## Alternatives Considered
+
+### .NET Only
+
+Rejected because it would unnecessarily limit access to mature analytics, scientific computing, and AI libraries.
+
+### Python Only
+
+Rejected because the platform benefits from the enterprise application strengths, ecosystem, and long-term maintainability provided by .NET.
+
+## Relationship to Other ADRs
+
+- ADR-0001 defines the overall modular architecture.
+- ADR-0003 standardizes data contracts between services.
+- ADR-0004 defines data boundaries.
+- ADR-0005 establishes the evidence-first architecture.
