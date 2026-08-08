@@ -22,7 +22,7 @@
 <path fill="#e8f1fb" stroke="#345995" stroke-width="1.3" d="M603,-413C603,-413 438,-413 438,-413 432,-413 426,-407 426,-401 426,-401 426,-371 426,-371 426,-365 432,-359 438,-359 438,-359 603,-359 603,-359 609,-359 615,-365 615,-371 615,-371 615,-401 615,-401 615,-407 609,-413 603,-413"/>
 <text text-anchor="middle" x="520.5" y="-395.2" font-family="Arial" font-size="11.00" fill="#102a43">docs/</text>
 <text text-anchor="middle" x="520.5" y="-383.2" font-family="Arial" font-size="11.00" fill="#102a43">Architecture • ADRs • governance</text>
-<text text-anchor="middle" x="520.5" y="-371.2" font-family="Arial" font-size="11.00" fill="#102a43">quality • operations • learning</text>
+<text text-anchor="middle" x="520.5" y="-371.2" font-family="Arial" font-size="11.00" fill="#102a43">quality • operations • reference</text>
 </g>
 <!-- root&#45;&gt;docs -->
 <g id="edge1" class="edge">

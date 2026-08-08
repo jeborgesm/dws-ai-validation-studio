@@ -98,8 +98,8 @@
 <g id="node8" class="node">
 <title>defense</title>
 <path fill="#fff8e1" stroke="#b7791f" stroke-width="1.3" d="M1801.07,-42.21C1801.07,-42.21 1629.07,-42.21 1629.07,-42.21 1623.07,-42.21 1617.07,-36.21 1617.07,-30.21 1617.07,-30.21 1617.07,-12.21 1617.07,-12.21 1617.07,-6.21 1623.07,-0.21 1629.07,-0.21 1629.07,-0.21 1801.07,-0.21 1801.07,-0.21 1807.07,-0.21 1813.07,-6.21 1813.07,-12.21 1813.07,-12.21 1813.07,-30.21 1813.07,-30.21 1813.07,-36.21 1807.07,-42.21 1801.07,-42.21"/>
-<text text-anchor="middle" x="1715.07" y="-24.41" font-family="Arial" font-size="11.00" fill="#102a43">7. Project defense guide</text>
-<text text-anchor="middle" x="1715.07" y="-12.41" font-family="Arial" font-size="11.00" fill="#102a43">Practice explaining and defending it</text>
+<text text-anchor="middle" x="1715.07" y="-24.41" font-family="Arial" font-size="11.00" fill="#102a43">7. engineering justification guide</text>
+<text text-anchor="middle" x="1715.07" y="-12.41" font-family="Arial" font-size="11.00" fill="#102a43">Practice explaining and justifying it</text>
 </g>
 <!-- code&#45;&gt;defense -->
 <g id="edge7" class="edge">
