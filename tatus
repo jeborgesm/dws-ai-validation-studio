@@ -1,0 +1,116 @@
+[1mdiff --git a/README.md b/README.md[m
+[1mindex dfee169..81f7103 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -33,20 +33,15 @@[m [mMilestone 0 already provides a runnable path:[m
+ [m
+ ## Architecture at a glance[m
+ [m
+[31m-```text[m
+[31m-API client[m
+[31m-   |[m
+[31m-   v[m
+[31m-FastAPI transport layer[m
+[31m-   |[m
+[31m-   v[m
+[31m-Dataset profiler and rule evaluation[m
+[31m-   |[m
+[31m-   v[m
+[31m-Typed Pydantic validation report[m
+[31m-```[m
+[32m+[m[32m![DWS AI Validation Studio executive overview](docs/architecture/diagrams/01-executive-overview.svg)[m
+[32m+[m
+[32m+[m[32mMilestone 0 implements a deliberately small working vertical slice: a client uploads a CSV through FastAPI, the core profiler computes dataset evidence and evaluates transparent thresholds, and the API returns a typed Pydantic validation report. The target architecture expands this foundation with persistence, cloud services, governance artifacts, monitoring, and enterprise integrations.[m
+[32m+[m
+[32m+[m[32mFor the visual walkthrough, start with [How to Read This Project](docs/architecture/diagrams/00-how-to-read-this-project.svg), then review the [Milestone 0 system context](docs/architecture/diagrams/02-milestone-0-system-context.svg), [component responsibilities](docs/architecture/diagrams/03-milestone-0-component-responsibilities.svg), and [validation lifecycle](docs/architecture/diagrams/04-validation-lifecycle.svg).[m
+[32m+[m
+[32m+[m[32m> **Current vs. future state:** The [target platform architecture](docs/architecture/diagrams/06-target-platform-architecture.svg) and [future AI assistance roadmap](docs/architecture/diagrams/07-future-ai-assistance-roadmap.svg) are intentionally labeled as planned concepts. They are not claims about Milestone 0 implementation.[m
+ [m
+[31m-The target architecture adds PostgreSQL, S3, SageMaker, governance artifact generation, monitoring, Power BI, and workflow integration. See the [documentation map](docs/README.md) and [system context](docs/architecture/system-context.md).[m
+[32m+[m[32mSee the [documentation map](docs/README.md) and [system context](docs/architecture/system-context.md) for the detailed architecture record.[m
+ [m
+ ## Quick start[m
+ [m
+[1mdiff --git a/docs/README.md b/docs/README.md[m
+[1mindex 44d7ee8..98b0e4b 100644[m
+[1m--- a/docs/README.md[m
+[1m+++ b/docs/README.md[m
+[36m@@ -4,6 +4,8 @@[m [mThis directory is the authoritative technical and governance record for DWS AI V[m
+ [m
+ ## Start here[m
+ [m
+[32m+[m[32m![How to read DWS AI Validation Studio](architecture/diagrams/00-how-to-read-this-project.svg)[m
+[32m+[m
+ 1. [Project charter](project-management/project-charter.md)[m
+ 2. [Foundation architecture](architecture/foundation.md)[m
+ 3. [System context and data flow](architecture/system-context.md)[m
+[36m@@ -12,6 +14,20 @@[m [mThis directory is the authoritative technical and governance record for DWS AI V[m
+ 6. [Threat model](governance/threat-model.md)[m
+ 7. [Learning and defense guide](learning/project-defense-guide.md)[m
+ [m
+[32m+[m[32m## Visual architecture guide[m
+[32m+[m
+[32m+[m[32mThe diagrams are an orientation layer over the written documentation. They do not replace the architecture decisions, implementation details, limitations, or governance records.[m
+[32m+[m
+[32m+[m[32m| Diagram | Purpose | State |[m
+[32m+[m[32m|---|---|---|[m
+[32m+[m[32m| [Executive overview](architecture/diagrams/01-executive-overview.svg) | Explains what the project is and the evidence-first idea at a glance. | Current concept |[m
+[32m+[m[32m| [Milestone 0 system context](architecture/diagrams/02-milestone-0-system-context.svg) | Shows the working CSV upload, profiling, rule evaluation, typed report, and cleanup flow. | Implemented |[m
+[32m+[m[32m| [Milestone 0 component responsibilities](architecture/diagrams/03-milestone-0-component-responsibilities.svg) | Maps API, profiler, contracts, and tests to their responsibilities. | Implemented |[m
+[32m+[m[32m| [Validation lifecycle](architecture/diagrams/04-validation-lifecycle.svg) | Shows the evidence-oriented validation cycle from input through human review. | Current method / evolving |[m
+[32m+[m[32m| [Repository structure](architecture/diagrams/05-repository-structure.svg) | Explains how source code, tests, data, documentation, and GitHub automation fit together. | Current repository |[m
+[32m+[m[32m| [Target platform architecture](architecture/diagrams/06-target-platform-architecture.svg) | Shows the planned expansion into persistence, cloud services, governance, monitoring, and integrations. | Planned |[m
+[32m+[m[32m| [Future AI assistance roadmap](architecture/diagrams/07-future-ai-assistance-roadmap.svg) | Shows projected AI-assisted documentation, review, advisory, and reporting roles with human decision authority retained. | Projected |[m
+[32m+[m
+ ## Architecture decision records[m
+ [m
+ Architecture Decision Records (ADRs) document not only what was chosen, but why, which alternatives were considered, and what tradeoffs were accepted.[m
+[1mdiff --git a/docs/architecture/component-responsibilities.md b/docs/architecture/component-responsibilities.md[m
+[1mindex 960bcd4..7ce00ed 100644[m
+[1m--- a/docs/architecture/component-responsibilities.md[m
+[1m+++ b/docs/architecture/component-responsibilities.md[m
+[36m@@ -1,5 +1,9 @@[m
+ # Component Responsibilities[m
+ [m
+[32m+[m[32m![Milestone 0 component responsibilities](diagrams/03-milestone-0-component-responsibilities.svg)[m
+[32m+[m
+[32m+[m[32mThis diagram shows the responsibility boundaries in the current vertical slice. The written sections below are authoritative for what each component owns and, just as importantly, what it must not own.[m
+[32m+[m
+ ## API layer[m
+ [m
+ Owns HTTP concerns only:[m
+[1mdiff --git a/docs/architecture/foundation.md b/docs/architecture/foundation.md[m
+[1mindex 2fd222c..ecd1dc6 100644[m
+[1m--- a/docs/architecture/foundation.md[m
+[1m+++ b/docs/architecture/foundation.md[m
+[36m@@ -4,6 +4,10 @@[m
+ [m
+ Milestone 0 uses a deliberately small modular architecture. The purpose is to learn Python idioms while preserving enterprise qualities: separation of concerns, typed contracts, deterministic behavior, testability, explicit failure handling, and an incremental path toward cloud deployment.[m
+ [m
+[32m+[m[32m![DWS AI Validation Studio executive overview](diagrams/01-executive-overview.svg)[m
+[32m+[m
+[32m+[m[32mThe diagram is intentionally high level. The sections below define the architectural responsibilities and boundaries that make the current implementation defensible.[m
+[32m+[m
+ ## Design principles[m
+ [m
+ - Keep transport, domain logic, and infrastructure responsibilities separate.[m
+[36m@@ -38,6 +42,10 @@[m [mUnexpected failures are not deliberately swallowed because hiding defects would[m
+ [m
+ ## Planned evolution[m
+ [m
+[32m+[m[32m![Target platform architecture — planned](diagrams/06-target-platform-architecture.svg)[m
+[32m+[m
+[32m+[m[32mThe target architecture is a roadmap, not a description of Milestone 0. Planned additions include:[m
+[32m+[m
+ - PostgreSQL stores model inventory, validation runs, findings, approvals, and audit history.[m
+ - S3 stores datasets and generated evidence artifacts.[m
+ - SageMaker supports training, registration, deployment, and monitoring.[m
+[36m@@ -45,6 +53,12 @@[m [mUnexpected failures are not deliberately swallowed because hiding defects would[m
+ - Power BI consumes curated validation and monitoring data.[m
+ - Power Automate and SharePoint demonstrate human review and evidence retention.[m
+ [m
+[32m+[m[32m### Projected AI assistance[m
+[32m+[m
+[32m+[m[32m![Future AI assistance roadmap — projected](diagrams/07-future-ai-assistance-roadmap.svg)[m
+[32m+[m
+[32m+[m[32mAI assistance is a projected capability rather than an implemented Milestone 0 feature. The concept is to use agents or AI-assisted services to help explain evidence, identify review gaps, recommend additional validation work, and draft reports 

@@ -4,6 +4,10 @@
 
 Milestone 0 uses a deliberately small modular architecture. The purpose is to learn Python idioms while preserving enterprise qualities: separation of concerns, typed contracts, deterministic behavior, testability, explicit failure handling, and an incremental path toward cloud deployment.
 
+![DWS AI Validation Studio executive overview](diagrams/01-executive-overview.svg)
+
+The diagram is intentionally high level. The sections below define the architectural responsibilities and boundaries that make the current implementation defensible.
+
 ## Design principles
 
 - Keep transport, domain logic, and infrastructure responsibilities separate.
@@ -38,12 +42,22 @@ Unexpected failures are not deliberately swallowed because hiding defects would 
 
 ## Planned evolution
 
+![Target platform architecture — planned](diagrams/06-target-platform-architecture.svg)
+
+The target architecture is a roadmap, not a description of Milestone 0. Planned additions include:
+
 - PostgreSQL stores model inventory, validation runs, findings, approvals, and audit history.
 - S3 stores datasets and generated evidence artifacts.
 - SageMaker supports training, registration, deployment, and monitoring.
 - A governance module generates model cards and validation reports.
 - Power BI consumes curated validation and monitoring data.
 - Power Automate and SharePoint demonstrate human review and evidence retention.
+
+### Projected AI assistance
+
+![Future AI assistance roadmap — projected](diagrams/07-future-ai-assistance-roadmap.svg)
+
+AI assistance is a projected capability rather than an implemented Milestone 0 feature. The concept is to use agents or AI-assisted services to help explain evidence, identify review gaps, recommend additional validation work, and draft reports while keeping final governance decisions with a human reviewer.
 
 ## Why this remains defensible
 

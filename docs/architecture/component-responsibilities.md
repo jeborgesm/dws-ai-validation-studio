@@ -1,5 +1,9 @@
 # Component Responsibilities
 
+![Milestone 0 component responsibilities](diagrams/03-milestone-0-component-responsibilities.svg)
+
+This diagram shows the responsibility boundaries in the current vertical slice. The written sections below are authoritative for what each component owns and, just as importantly, what it must not own.
+
 ## API layer
 
 Owns HTTP concerns only:

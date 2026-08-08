@@ -4,6 +4,10 @@
 
 Validation asks whether data, a model, and its operating context are fit for a stated purpose. It is broader than calculating accuracy and must include data quality, methodology, reproducibility, limitations, operational behavior, and governance evidence.
 
+![Validation lifecycle](../architecture/diagrams/04-validation-lifecycle.svg)
+
+The lifecycle diagram emphasizes the project's evidence-first principle: validation produces inspectable evidence for human review rather than treating a single automated score as a final governance decision.
+
 ## Dataset validation dimensions
 
 ### Completeness

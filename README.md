@@ -33,20 +33,15 @@ Milestone 0 already provides a runnable path:
 
 ## Architecture at a glance
 
-```text
-API client
-   |
-   v
-FastAPI transport layer
-   |
-   v
-Dataset profiler and rule evaluation
-   |
-   v
-Typed Pydantic validation report
-```
+![DWS AI Validation Studio executive overview](docs/architecture/diagrams/01-executive-overview.svg)
 
-The target architecture adds PostgreSQL, S3, SageMaker, governance artifact generation, monitoring, Power BI, and workflow integration. See the [documentation map](docs/README.md) and [system context](docs/architecture/system-context.md).
+Milestone 0 implements a deliberately small working vertical slice: a client uploads a CSV through FastAPI, the core profiler computes dataset evidence and evaluates transparent thresholds, and the API returns a typed Pydantic validation report. The target architecture expands this foundation with persistence, cloud services, governance artifacts, monitoring, and enterprise integrations.
+
+For the visual walkthrough, start with [How to Read This Project](docs/architecture/diagrams/00-how-to-read-this-project.svg), then review the [Milestone 0 system context](docs/architecture/diagrams/02-milestone-0-system-context.svg), [component responsibilities](docs/architecture/diagrams/03-milestone-0-component-responsibilities.svg), and [validation lifecycle](docs/architecture/diagrams/04-validation-lifecycle.svg).
+
+> **Current vs. future state:** The [target platform architecture](docs/architecture/diagrams/06-target-platform-architecture.svg) and [future AI assistance roadmap](docs/architecture/diagrams/07-future-ai-assistance-roadmap.svg) are intentionally labeled as planned concepts. They are not claims about Milestone 0 implementation.
+
+See the [documentation map](docs/README.md) and [system context](docs/architecture/system-context.md) for the detailed architecture record.
 
 ## Quick start
 

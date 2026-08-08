@@ -4,6 +4,8 @@ This directory is the authoritative technical and governance record for DWS AI V
 
 ## Start here
 
+![How to read DWS AI Validation Studio](architecture/diagrams/00-how-to-read-this-project.svg)
+
 1. [Project charter](project-management/project-charter.md)
 2. [Foundation architecture](architecture/foundation.md)
 3. [System context and data flow](architecture/system-context.md)
@@ -11,6 +13,20 @@ This directory is the authoritative technical and governance record for DWS AI V
 5. [Responsible use and data boundary](governance/responsible-use.md)
 6. [Threat model](governance/threat-model.md)
 7. [Learning and defense guide](learning/project-defense-guide.md)
+
+## Visual architecture guide
+
+The diagrams are an orientation layer over the written documentation. They do not replace the architecture decisions, implementation details, limitations, or governance records.
+
+| Diagram | Purpose | State |
+|---|---|---|
+| [Executive overview](architecture/diagrams/01-executive-overview.svg) | Explains what the project is and the evidence-first idea at a glance. | Current concept |
+| [Milestone 0 system context](architecture/diagrams/02-milestone-0-system-context.svg) | Shows the working CSV upload, profiling, rule evaluation, typed report, and cleanup flow. | Implemented |
+| [Milestone 0 component responsibilities](architecture/diagrams/03-milestone-0-component-responsibilities.svg) | Maps API, profiler, contracts, and tests to their responsibilities. | Implemented |
+| [Validation lifecycle](architecture/diagrams/04-validation-lifecycle.svg) | Shows the evidence-oriented validation cycle from input through human review. | Current method / evolving |
+| [Repository structure](architecture/diagrams/05-repository-structure.svg) | Explains how source code, tests, data, documentation, and GitHub automation fit together. | Current repository |
+| [Target platform architecture](architecture/diagrams/06-target-platform-architecture.svg) | Shows the planned expansion into persistence, cloud services, governance, monitoring, and integrations. | Planned |
+| [Future AI assistance roadmap](architecture/diagrams/07-future-ai-assistance-roadmap.svg) | Shows projected AI-assisted documentation, review, advisory, and reporting roles with human decision authority retained. | Projected |
 
 ## Architecture decision records
 

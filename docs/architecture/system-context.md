@@ -6,6 +6,10 @@ DWS AI Validation Studio receives a dataset or model-related artifact, performs 
 
 ## Current Milestone 0 flow
 
+![Milestone 0 system context](diagrams/02-milestone-0-system-context.svg)
+
+The SVG is the primary orientation diagram for the implemented flow. The Mermaid view below preserves the same flow in a compact, source-friendly form.
+
 ```mermaid
 flowchart LR
     U[User or API Client] -->|CSV upload| API[FastAPI API]
@@ -17,6 +21,10 @@ flowchart LR
 ```
 
 ## Target flow
+
+![Target platform architecture — planned](diagrams/06-target-platform-architecture.svg)
+
+The target view is explicitly future state. PostgreSQL, S3, SageMaker, governance artifact generation, BI, and workflow integrations are not part of Milestone 0.
 
 ```mermaid
 flowchart TB
