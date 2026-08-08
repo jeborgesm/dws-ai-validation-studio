@@ -1,57 +1,179 @@
-# System Context and Data Flow
+# System Context
 
-## Context
+## Purpose
 
-DWS AI Validation Studio receives a dataset or model-related artifact, performs validation work, records findings, and produces evidence that a human reviewer can inspect. It is implemented as a public proof of concept and reference platform that applies enterprise engineering practices.
+This document describes how the Decision Support Platform interacts with people, enterprise systems, and external services. It defines the platform boundary and the flow of information into and out of the platform.
 
-## Current Milestone 0 flow
+The System Context intentionally focuses on **relationships** rather than implementation details.
 
-![Milestone 0 system context](diagrams/02-milestone-0-system-context.svg)
+---
 
-The SVG is the primary orientation diagram for the implemented flow. The Mermaid view below preserves the same flow in a compact, source-friendly form.
+# Context Overview
 
-```mermaid
-flowchart LR
-    U[User or API Client] -->|CSV upload| API[FastAPI API]
-    API -->|Temporary local file| P[Dataset Profiler]
-    P --> R[Rule Evaluation]
-    R --> C[Pydantic Report Contract]
-    C -->|JSON response| U
-    API -->|Always delete temporary file| D[Cleanup]
+```text
+                 Business Users
+      (Analysts, Reviewers, Executives)
+                      │
+                      ▼
+         Decision Support Platform
+                      │
+     ┌────────┬────────┼─────────┬─────────┐
+     ▼        ▼        ▼         ▼
+ Business   Enterprise  AI/ML   Reporting
+ Systems     Data       Services Dashboards
 ```
 
-## Target flow
+The platform acts as the coordination point for operational decision support rather than replacing existing enterprise systems.
 
-![Target platform architecture — planned](diagrams/06-target-platform-architecture.svg)
+---
 
-The target view is explicitly future state. PostgreSQL, S3, SageMaker, governance artifact generation, BI, and workflow integrations are not part of Milestone 0.
+# Primary Actors
 
-```mermaid
-flowchart TB
-    U[Analyst / Reviewer] --> UI[Web or BI Experience]
-    UI --> API[Validation API]
-    API --> ORCH[Validation Orchestrator]
-    ORCH --> DP[Data Profiling]
-    ORCH --> ME[Model Evaluation]
-    ORCH --> EX[Explainability]
-    ORCH --> DR[Drift and Anomaly Analysis]
-    ORCH --> GOV[Governance Artifact Generator]
-    ORCH --> DB[(PostgreSQL Metadata and Audit Store)]
-    ORCH --> S3[(S3 Evidence and Dataset Artifacts)]
-    ORCH --> SM[AWS SageMaker]
-    DB --> PBI[Power BI]
-    GOV --> SP[SharePoint / GitHub Evidence]
-    GOV --> PA[Power Automate Review Workflow]
+## Operations Analyst
+
+Submits or reviews operational decision cases.
+
+## Decision Reviewer
+
+Approves, declines, escalates, or requests additional information for high-impact decisions.
+
+## Business Analyst
+
+Evaluates decision quality, business rules, and operational trends.
+
+## Executive
+
+Consumes dashboards and operational metrics to measure business outcomes.
+
+---
+
+# External Systems
+
+## Source Systems
+
+Provide customer, transaction, operational, or reference information.
+
+Examples include CRM systems, line-of-business applications, or case-management platforms.
+
+---
+
+## Enterprise Data Platform
+
+Stores operational records, evidence, decision history, and analytical data.
+
+Planned technologies include PostgreSQL and object storage.
+
+---
+
+## AI and Analytics Services
+
+Provide classification, summarization, similarity analysis, recommendations, and predictive models.
+
+These services support—not replace—the operational decision process.
+
+---
+
+## Enterprise Collaboration
+
+Future integrations may include:
+
+- SharePoint Online
+- Power Automate
+- ServiceNow
+- JIRA
+
+These systems extend workflow and governance capabilities beyond the platform boundary.
+
+---
+
+## Reporting & Monitoring
+
+Executive dashboards and operational reporting provide visibility into:
+
+- Decision quality
+- Processing trends
+- Rule effectiveness
+- AI performance
+- Operational health
+
+Power BI is the planned reporting platform.
+
+---
+
+# Platform Responsibilities
+
+The Decision Support Platform is responsible for:
+
+- Coordinating the decision lifecycle.
+- Applying deterministic business rules.
+- Invoking analytics and AI services.
+- Collecting evidence.
+- Supporting human review.
+- Recording operational decisions.
+- Preserving traceability.
+- Producing monitoring information.
+
+The platform is **not** the system of record for every enterprise domain. It orchestrates and enriches operational decisions while integrating with surrounding systems.
+
+---
+
+# Information Flow
+
+```text
+Business Request
+        │
+        ▼
+Decision Support Platform
+        │
+├── Business Rules
+├── Analytics
+├── AI Assistance
+│
+▼
+Evidence Collection
+        │
+▼
+Human Review
+        │
+▼
+Operational Decision
+        │
+▼
+Monitoring & Reporting
 ```
 
-## Trust boundaries
+---
 
-1. **Upload boundary:** Incoming content is untrusted until validated.
-2. **Application boundary:** API and validation components execute with minimum required permissions.
-3. **Persistence boundary:** Metadata and artifacts are stored separately because they have different security and retention needs.
-4. **Cloud boundary:** AWS services require explicit identity, network, encryption, and logging controls.
-5. **Human decision boundary:** Automated validation produces evidence and recommendations; it does not make final governance decisions.
+# Current vs Target Context
 
-## Current simplifications
+## Current Foundation
 
-Milestone 0 uses temporary local files because it is the smallest testable path. Persistence, authentication, malware scanning, object storage, and background jobs are intentionally deferred and documented as future controls rather than implied to exist.
+- REST API
+- Dataset profiling
+- Rule evaluation
+- Validation findings
+- Automated tests
+- CI/CD
+
+## Target Platform
+
+The platform expands to include:
+
+- Decision orchestration
+- Evidence repository
+- Workflow services
+- Enterprise integrations
+- AI services
+- Monitoring
+- Dashboards
+- Governance services
+
+---
+
+# Relationship to Other Documents
+
+- **Product Documentation** explains why these interactions exist.
+- **Foundation Architecture** defines the architectural philosophy.
+- **Component Responsibilities** describes how individual platform components implement these responsibilities.
+
+Together, these documents define the platform boundary and establish how the Decision Support Platform fits within a larger enterprise ecosystem.

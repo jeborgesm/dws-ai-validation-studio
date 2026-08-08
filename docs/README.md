@@ -1,47 +1,268 @@
-# Documentation Map
+# Documentation Guide
 
-This directory is the authoritative technical and governance record for DWS AI Validation Studio. The project deliberately treats documentation as a first-class engineering deliverable because AI/ML validation work must be explainable, reproducible, reviewable, and supported by clear engineering justification.
+The Decision Support Platform documentation is organized to explain the platform from the **business problem** to the **technical implementation**.
 
-## Start here
+Rather than beginning with technologies or source code, the documentation progressively answers five fundamental questions:
 
-![How to read DWS AI Validation Studio](architecture/diagrams/00-how-to-read-this-project.svg)
+1. **Why does the platform exist?**
+2. **How is it designed?**
+3. **How is it implemented?**
+4. **How is it operated?**
+5. **How is trust established and maintained?**
 
-1. [Project charter](project-management/project-charter.md)
-2. [Foundation architecture](architecture/foundation.md)
-3. [System context and data flow](architecture/system-context.md)
-4. [Validation methodology](quality/validation-methodology.md)
-5. [Responsible use and data boundary](governance/responsible-use.md)
-6. [Threat model](governance/threat-model.md)
-7. [Engineering justification guide](guides/engineering-justification-guide.md)
+This structure mirrors the way enterprise systems are typically designed and documented.
 
-## Visual architecture guide
+---
 
-The diagrams are an orientation layer over the written documentation. They do not replace the architecture decisions, implementation details, limitations, or governance records.
+# Documentation Architecture
 
-| Diagram | Purpose | State |
-|---|---|---|
-| [Executive overview](architecture/diagrams/01-executive-overview.svg) | Explains what the project is and the evidence-first idea at a glance. | Current concept |
-| [Milestone 0 system context](architecture/diagrams/02-milestone-0-system-context.svg) | Shows the working CSV upload, profiling, rule evaluation, typed report, and cleanup flow. | Implemented |
-| [Milestone 0 component responsibilities](architecture/diagrams/03-milestone-0-component-responsibilities.svg) | Maps API, profiler, contracts, and tests to their responsibilities. | Implemented |
-| [Validation lifecycle](architecture/diagrams/04-validation-lifecycle.svg) | Shows the evidence-oriented validation cycle from input through human review. | Current method / evolving |
-| [Repository structure](architecture/diagrams/05-repository-structure.svg) | Explains how source code, tests, data, documentation, and GitHub automation fit together. | Current repository |
-| [Target platform architecture](architecture/diagrams/06-target-platform-architecture.svg) | Shows the planned expansion into persistence, cloud services, governance, monitoring, and integrations. | Planned |
-| [Future AI assistance roadmap](architecture/diagrams/07-future-ai-assistance-roadmap.svg) | Shows projected AI-assisted documentation, review, advisory, and reporting roles with human decision authority retained. | Projected |
+```
+Repository README
+        │
+        ▼
+Product
+        │
+        ▼
+Architecture
+        │
+        ▼
+Engineering
+        │
+        ▼
+Operations
+        │
+        ▼
+Quality
+        │
+        ▼
+Governance
+```
 
-## Architecture decision records
+Each documentation layer builds upon the previous one.
 
-Architecture Decision Records (ADRs) document not only what was chosen, but why, which alternatives were considered, and what tradeoffs were accepted.
+Business objectives guide the architecture.
 
-- [ADR-0001: Modular monolith first](decisions/ADR-0001-modular-monolith.md)
-- [ADR-0002: Python and FastAPI](decisions/ADR-0002-python-fastapi.md)
-- [ADR-0003: Typed Pydantic contracts](decisions/ADR-0003-pydantic-contracts.md)
-- [ADR-0004: Synthetic and public data only](decisions/ADR-0004-data-boundary.md)
-- [ADR-0005: Evidence-first development](decisions/ADR-0005-evidence-first.md)
+The architecture guides the implementation.
 
-## Quality and operations
+The implementation supports operational capabilities.
 
-- [Testing strategy](quality/testing-strategy.md)
-- [Definition of done](quality/definition-of-done.md)
-- [Local development](operations/local-development.md)
-- [Troubleshooting](operations/troubleshooting.md)
-- [Glossary](glossary.md)
+Operations produce measurable evidence that feeds governance and continuous improvement.
+
+---
+
+# Documentation Sections
+
+## Product
+
+**Purpose**
+
+Explain **why** the platform exists.
+
+The Product documentation defines the business problem, long-term vision, operational decision process, business capabilities, and the people who interact with the platform.
+
+Recommended reading:
+
+- Product README
+- Product Vision
+- Problem Statement
+- Business Process
+- Business Capabilities
+- Personas
+
+---
+
+## Architecture
+
+**Purpose**
+
+Explain **how** the platform is designed.
+
+Topics include:
+
+- Foundation architecture
+- System context
+- Component responsibilities
+- Platform evolution
+- Architecture diagrams
+
+---
+
+## Architecture Decision Records (ADRs)
+
+**Purpose**
+
+Document significant architectural decisions.
+
+Each ADR explains:
+
+- The decision
+- The alternatives considered
+- The rationale
+- Expected consequences
+
+---
+
+## Operations
+
+**Purpose**
+
+Describe how the platform is developed, executed, and maintained.
+
+Topics include:
+
+- Local development
+- Troubleshooting
+- Environment setup
+- Operational practices
+
+---
+
+## Quality
+
+**Purpose**
+
+Describe how software quality is verified.
+
+Topics include:
+
+- Testing strategy
+- Validation methodology
+- Definition of Done
+- Automated verification
+
+---
+
+## Governance
+
+**Purpose**
+
+Explain how trustworthy operation is achieved.
+
+Topics include:
+
+- Responsible AI
+- Model governance
+- Threat modeling
+- Evidence preservation
+
+---
+
+## Guides
+
+**Purpose**
+
+Provide supporting engineering guidance.
+
+Examples include:
+
+- Engineering justification
+- Python guidance for experienced .NET developers
+
+---
+
+## Project Management
+
+**Purpose**
+
+Describe the overall direction and objectives of the repository.
+
+Includes:
+
+- Project Charter
+
+---
+
+# Recommended Reading Paths
+
+## Executives
+
+1. Repository README
+2. Product Vision
+3. Problem Statement
+4. Business Process
+
+---
+
+## Architects
+
+1. Repository README
+2. Product documentation
+3. Foundation Architecture
+4. System Context
+5. Component Responsibilities
+6. Architecture Decision Records
+
+---
+
+## Engineers
+
+1. Repository README
+2. Product documentation
+3. Architecture
+4. Operations
+5. Quality
+6. Source Code
+
+---
+
+## Contributors
+
+1. Repository README
+2. Documentation Guide
+3. Contributing Guide
+4. Local Development
+5. Testing Strategy
+
+---
+
+# Documentation Principles
+
+The repository follows several documentation principles.
+
+## Business First
+
+Business objectives are documented before technical implementation.
+
+---
+
+## Architecture Before Code
+
+Design decisions should be documented before significant implementation work.
+
+---
+
+## Evidence First
+
+Important engineering claims should be supported by code, tests, documentation, measurements, or reproducible examples.
+
+---
+
+## Incremental Evolution
+
+Documentation evolves together with the implementation.
+
+Each milestone expands both the software and the supporting documentation.
+
+---
+
+## Single Source of Truth
+
+Each topic should have one primary location.
+
+Cross-references are encouraged, but duplicated documentation should be avoided whenever possible.
+
+---
+
+# Documentation Philosophy
+
+The Decision Support Platform is intended to demonstrate enterprise software engineering rather than isolated technologies.
+
+Accordingly, the documentation is treated as a first-class engineering artifact.
+
+Every significant capability should be understandable from three complementary perspectives:
+
+- Business purpose
+- Architectural design
+- Technical implementation
+
+Understanding these relationships is one of the primary goals of the repository.

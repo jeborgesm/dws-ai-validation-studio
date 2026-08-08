@@ -1,64 +1,192 @@
 # Foundation Architecture
 
-## Architectural intent
+## Purpose
 
-Milestone 0 uses a deliberately small modular architecture to establish enterprise qualities from the first working vertical slice: separation of concerns, typed contracts, deterministic behavior, testability, explicit failure handling, and an incremental path toward cloud deployment.
+This document establishes the architectural foundation for the **Decision Support Platform**. It explains why the platform is structured the way it is and how the technical architecture supports the business vision defined in the Product documentation.
 
-![DWS AI Validation Studio executive overview](diagrams/01-executive-overview.svg)
+Unlike detailed design documents, this foundation focuses on enduring architectural principles rather than implementation details.
 
-The diagram is intentionally high level. The sections below define the architectural responsibilities, boundaries, and rationale that justify the current implementation.
+---
 
-## Design principles
+# Relationship to the Product Documentation
 
-- Keep transport, domain logic, and infrastructure responsibilities separate.
-- Prefer pure, deterministic core behavior that is easy to test.
-- Record observed evidence and thresholds rather than returning opaque pass/fail labels.
-- Avoid premature distributed architecture.
-- Keep external contracts typed and documented.
-- Make deferred security and governance controls explicit.
+The platform is designed from the business problem outward.
 
-## Components
+```
+Business Problem
+        │
+        ▼
+Product Vision
+        │
+        ▼
+Business Capabilities
+        │
+        ▼
+Architecture
+        │
+        ▼
+Implementation
+```
 
-### FastAPI transport layer
+Business objectives remain stable even as implementation technologies evolve.
 
-Accepts dataset uploads and returns structured validation reports. It owns transport concerns, input rejection, HTTP status behavior, and temporary-file cleanup.
+---
 
-### Dataset profiling and rule evaluation
+# Architectural Philosophy
 
-Uses pandas to inspect a dataset and evaluate initial quality rules. It does not know about HTTP, persistence, cloud services, or presentation.
+The Decision Support Platform is engineered to support **trustworthy operational decisions**.
 
-### Pydantic contracts
+The architecture intentionally combines:
 
-Defines stable, validated output objects for column profiles, findings, and dataset-level results. These contracts generate OpenAPI schemas and make evidence machine-readable.
+- Deterministic business rules
+- Analytics
+- AI-assisted recommendations
+- Human oversight
+- Evidence preservation
+- Governance
+- Operational monitoring
 
-## Error behavior
+No single capability is sufficient by itself. Trust emerges from the interaction of these capabilities.
 
-- Non-CSV extension: HTTP 415.
-- Empty upload: HTTP 400.
-- Known parsing failure: HTTP 422.
-- Temporary files are removed in a `finally` block.
+---
 
-Unexpected failures are not deliberately swallowed because hiding defects would reduce diagnostic value. Production hardening will add structured logging, correlation identifiers, and safe error responses.
+# Architectural Principles
 
-## Planned evolution
+## Business First
 
-![Target platform architecture — planned](diagrams/06-target-platform-architecture.svg)
+Business capabilities drive architectural decisions.
 
-The target architecture is a roadmap, not a description of Milestone 0. Planned additions include:
+## Evidence First
 
-- PostgreSQL stores model inventory, validation runs, findings, approvals, and audit history.
-- S3 stores datasets and generated evidence artifacts.
-- SageMaker supports training, registration, deployment, and monitoring.
-- A governance module generates model cards and validation reports.
-- Power BI consumes curated validation and monitoring data.
-- Power Automate and SharePoint demonstrate human review and evidence retention.
+Evidence is treated as a first-class architectural concern.
 
-### Projected AI assistance
+## Explainability
 
-![Future AI assistance roadmap — projected](diagrams/07-future-ai-assistance-roadmap.svg)
+Every important recommendation should be explainable after it has been made.
 
-AI assistance is a projected capability rather than an implemented Milestone 0 feature. The concept is to use agents or AI-assisted services to help explain evidence, identify review gaps, recommend additional validation work, and draft reports while keeping final governance decisions with a human reviewer.
+## Human Accountability
 
-## Engineering justification
+AI augments human decision making rather than replacing organizational accountability.
 
-The architecture is intentionally proportional to the current problem. It does not claim future controls are already implemented, and each planned addition is tied to a concrete capability rather than technology for its own sake.
+## Layered Architecture
+
+Business capabilities, application services, infrastructure, and integrations are intentionally separated to reduce coupling.
+
+## Technology Independence
+
+Business capabilities should remain stable even if implementation technologies change.
+
+## Incremental Evolution
+
+The platform evolves through small, validated milestones while preserving architectural consistency.
+
+---
+
+# Business Capability Mapping
+
+| Business Capability | Architectural Responsibility |
+|--------------------|------------------------------|
+| Decision Evaluation | Decision orchestration services |
+| Business Rules | Rule engine |
+| Analytics & Risk | Analytics services |
+| AI Assistance | AI services |
+| Evidence Management | Evidence repository |
+| Human Review | Workflow and review services |
+| Governance | Audit and governance layer |
+| Operational Monitoring | Observability and reporting |
+
+Every major architectural component should support at least one documented business capability.
+
+---
+
+# Architectural Layers
+
+```
+Presentation
+        │
+Application Services
+        │
+Decision Services
+        │
+Domain Logic
+        │
+Data & Evidence
+        │
+Enterprise Integrations
+```
+
+Each layer has a single primary responsibility and communicates through well-defined interfaces.
+
+---
+
+# Current Implementation
+
+Milestone 0 establishes the engineering foundation with:
+
+- FastAPI REST interface
+- Dataset profiling
+- Rule evaluation
+- Typed contracts
+- Automated testing
+- CI/CD
+- Architecture documentation
+- Governance documentation
+
+These capabilities intentionally form a small vertical slice.
+
+---
+
+# Target Platform
+
+The long-term architecture expands around the operational decision lifecycle.
+
+```
+Decision Request
+        │
+Decision Services
+        │
+├── Business Rules
+├── Analytics
+├── AI Assistance
+│
+Evidence Management
+        │
+Human Review
+        │
+Governance
+        │
+Monitoring
+```
+
+Supporting enterprise capabilities include PostgreSQL, AWS, Amazon SageMaker, Amazon S3, Power BI, Power Automate, SharePoint Online, ServiceNow, JIRA, GitHub, AI agents, and observability.
+
+These technologies are introduced only when they provide measurable value to the business capabilities.
+
+---
+
+# Evolution Strategy
+
+The platform evolves through incremental milestones.
+
+Each milestone should:
+
+- introduce a measurable business capability,
+- preserve architectural consistency,
+- include automated verification,
+- document significant design decisions,
+- and update architecture and product documentation together.
+
+---
+
+# Relationship to Other Architecture Documents
+
+This document defines the architectural philosophy.
+
+The remaining architecture documents provide additional detail:
+
+- **System Context** — how the platform interacts with people and external systems.
+- **Component Responsibilities** — responsibilities and boundaries of major components.
+- **Architecture Diagrams** — visual representation of the platform.
+- **Architecture Decision Records** — rationale behind significant design decisions.
+
+Together these documents describe how the Decision Support Platform implements the business vision while maintaining enterprise engineering quality.
