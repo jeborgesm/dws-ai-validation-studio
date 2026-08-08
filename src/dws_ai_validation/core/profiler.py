@@ -3,6 +3,12 @@ from pathlib import Path
 import pandas as pd
 
 from dws_ai_validation.core.models import ColumnProfile, DatasetProfile, ValidationFinding
+from dws_ai_validation.core.rules import (
+    DatasetEvidence,
+    DuplicateRowsRule,
+    MissingValuesRule,
+    ValidationRule,
+)
 
 DEFAULT_MAX_MISSING_PERCENTAGE = 20.0
 DEFAULT_MAX_DUPLICATE_PERCENTAGE = 5.0
@@ -18,11 +24,8 @@ def profile_csv(
     frame = pd.read_csv(path)
     row_count = len(frame)
     duplicate_count = int(frame.duplicated().sum())
-    duplicate_percentage = (duplicate_count / row_count * 100.0) if row_count else 0.0
 
     columns: list[ColumnProfile] = []
-    findings: list[ValidationFinding] = []
-
     for column_name in frame.columns:
         series = frame[column_name]
         missing_count = int(series.isna().sum())
@@ -36,35 +39,20 @@ def profile_csv(
                 unique_count=int(series.nunique(dropna=True)),
             )
         )
-        passed = missing_percentage <= max_missing_percentage
-        findings.append(
-            ValidationFinding(
-                rule=f"missing_values:{column_name}",
-                passed=passed,
-                observed=round(missing_percentage, 2),
-                threshold=max_missing_percentage,
-                message=(
-                    f"Column '{column_name}' is within the missing-value threshold."
-                    if passed
-                    else f"Column '{column_name}' exceeds the missing-value threshold."
-                ),
-            )
-        )
 
-    duplicate_passed = duplicate_percentage <= max_duplicate_percentage
-    findings.append(
-        ValidationFinding(
-            rule="duplicate_rows",
-            passed=duplicate_passed,
-            observed=round(duplicate_percentage, 2),
-            threshold=max_duplicate_percentage,
-            message=(
-                "Duplicate rows are within the configured threshold."
-                if duplicate_passed
-                else "Duplicate rows exceed the configured threshold."
-            ),
-        )
+    evidence = DatasetEvidence(
+        row_count=row_count,
+        duplicate_row_count=duplicate_count,
+        columns=columns,
     )
+    rules: list[ValidationRule] = [
+        MissingValuesRule(max_missing_percentage=max_missing_percentage),
+        DuplicateRowsRule(max_duplicate_percentage=max_duplicate_percentage),
+    ]
+
+    findings: list[ValidationFinding] = []
+    for rule in rules:
+        findings.extend(rule.evaluate(evidence))
 
     return DatasetProfile(
         file_name=original_file_name,
