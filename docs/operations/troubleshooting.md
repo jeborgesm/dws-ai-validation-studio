@@ -1,29 +1,166 @@
 # Troubleshooting
 
-## Import errors after installation
+## Purpose
 
-Confirm the virtual environment is active, then reinstall editable dependencies:
+This document provides a structured approach for diagnosing and resolving issues encountered while developing or operating the Decision Support Platform.
 
-```bash
-pip install -e ".[dev]"
+The goal is to restore expected behavior quickly while preserving evidence that supports root-cause analysis and continuous improvement.
+
+---
+
+# Troubleshooting Principles
+
+When investigating a problem:
+
+- Reproduce the issue before attempting a fix.
+- Preserve evidence before making changes.
+- Identify the underlying cause rather than only the visible symptom.
+- Prefer permanent corrective actions over temporary workarounds.
+- Record significant findings for future reference.
+
+---
+
+# General Investigation Workflow
+
+```
+Issue Reported
+      │
+      ▼
+Collect Evidence
+      │
+      ▼
+Reproduce Problem
+      │
+      ▼
+Identify Root Cause
+      │
+      ▼
+Implement Fix
+      │
+      ▼
+Verify Resolution
+      │
+      ▼
+Document Findings
 ```
 
-## Python version mismatch
+---
 
-```bash
-python --version
-```
+# Evidence Collection
 
-The project requires Python 3.12 or newer. CI currently verifies Python 3.12.
+Useful evidence may include:
 
-## Coverage command fails to find package
+- Application logs
+- API responses
+- Stack traces
+- Configuration values
+- Test results
+- CI/CD pipeline output
+- Database state
+- Environment information
 
-The editable install must complete before running pytest. Running from the repository root is recommended.
+Evidence should be collected before restarting services or modifying configuration whenever practical.
 
-## CSV cannot be parsed
+---
 
-Milestone 0 assumes a conventional UTF-compatible comma-separated file. Encoding detection, delimiter selection, and advanced parser controls are planned work. Use a small known UTF-8 CSV during the foundation milestone.
+# Common Development Issues
 
-## PowerShell prevents activation
+## Dependency Problems
 
-A local execution-policy setting may block scripts. Activation is convenient but not mandatory; the virtual environment's Python executable can be called directly.
+Symptoms:
+
+- Missing packages
+- Import errors
+- Environment inconsistencies
+
+Recommended actions:
+
+- Recreate the virtual environment.
+- Install dependencies from the project configuration.
+- Confirm Python version compatibility.
+
+---
+
+## Quality Pipeline Failures
+
+Typical causes include:
+
+- Ruff linting failures
+- mypy type errors
+- pytest failures
+- Coverage regressions
+
+Resolve the reported issue before continuing development rather than bypassing the quality pipeline.
+
+---
+
+## API Problems
+
+Verify:
+
+- Request payload
+- Response contract
+- Endpoint configuration
+- Validation errors
+- Service logs
+
+Typed contracts should make API issues easier to identify.
+
+---
+
+## Database Problems
+
+Examples include:
+
+- Connection failures
+- Authentication errors
+- Schema mismatches
+- Missing data
+- Configuration errors
+
+Confirm environment configuration before modifying application code.
+
+---
+
+## Integration Problems
+
+When future integrations (AWS, Power BI, Power Automate, SharePoint, external APIs) are introduced, verify:
+
+- Authentication
+- Network connectivity
+- Permissions
+- Configuration
+- API compatibility
+
+---
+
+# Root Cause Analysis
+
+Every significant issue should result in an understanding of:
+
+- What happened?
+- Why did it happen?
+- Why wasn't it detected earlier?
+- What prevents it from happening again?
+
+Corrective actions should address the underlying cause whenever possible.
+
+---
+
+# Relationship to Quality
+
+Troubleshooting complements:
+
+- Testing Strategy
+- Validation Methodology
+- Definition of Done
+- Responsible Use
+- Evidence-First Architecture
+
+Operational evidence gathered during troubleshooting contributes to improving the platform over time.
+
+---
+
+# Summary
+
+Troubleshooting is an engineering activity focused on restoring reliable operation, improving understanding of system behavior, and strengthening the Decision Support Platform through evidence-based problem solving.
