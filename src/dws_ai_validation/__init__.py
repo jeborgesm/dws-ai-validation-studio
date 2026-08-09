@@ -1,1 +1,0 @@
-"""DWS AI Validation Studio."""

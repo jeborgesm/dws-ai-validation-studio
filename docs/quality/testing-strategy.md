@@ -1,55 +1,160 @@
 # Testing Strategy
 
-## Objectives
+## Purpose
 
-Tests provide confidence that validation evidence is computed consistently and that failures are explicit. The strategy favors deterministic, fast tests at the lowest useful layer.
+This document defines how the Decision Support Platform establishes confidence that its capabilities behave correctly, reliably, and consistently.
 
-## Test layers
+Testing is not limited to validating software functionality. It provides evidence that business rules, analytics, AI-assisted capabilities, workflows, integrations, and operational behavior satisfy their intended purpose.
 
-### Unit tests
+The testing strategy supports the platform's evidence-first architecture by producing reproducible results that can be reviewed throughout the software lifecycle.
 
-Exercise core profiling behavior with temporary files and controlled data. These tests verify counts, thresholds, findings, and edge cases without HTTP.
+---
 
-### API tests
+# Testing Principles
 
-Exercise route behavior, response contracts, status codes, and integration between FastAPI and the core profiler.
+The platform follows these principles:
 
-### Contract tests
+- Test behavior rather than implementation details.
+- Validate business capabilities before optimizing technology.
+- Automate repeatable verification whenever practical.
+- Produce evidence that supports engineering decisions.
+- Detect issues as early as possible in the delivery pipeline.
 
-Future tests will snapshot or validate OpenAPI and generated artifact schemas to detect accidental breaking changes.
+---
 
-### Integration tests
+# Testing Pyramid
 
-Future tests will cover PostgreSQL, object storage, SageMaker adapters, and background workflows using isolated environments or emulators where appropriate.
+```
+                 End-to-End
+                     ▲
+             Integration Tests
+                     ▲
+                API & Contract Tests
+                     ▲
+                  Unit Tests
+```
 
-### End-to-end tests
+Higher levels provide broader confidence while lower levels provide fast feedback.
 
-Future tests will execute a complete validation run from upload through persisted evidence and report generation.
+---
 
-## Quality gates
+# Unit Testing
 
-GitHub Actions runs:
+Unit tests verify individual components in isolation.
 
-1. Ruff linting.
-2. Strict mypy type checking.
-3. Pytest with coverage reporting.
+Typical examples include:
 
-A passing build is necessary but not sufficient. Documentation and governance changes are reviewed as part of the definition of done.
+- business rule evaluation,
+- analytical calculations,
+- evidence generation,
+- helper functions,
+- data transformations.
 
-## Test-data principles
+Unit tests should execute quickly and support continuous development.
 
-- Small enough to understand by inspection.
-- Synthetic unless a public source is documented.
-- Explicitly designed to trigger both passing and failing cases.
-- No secrets or personal information.
+---
 
-## Future test cases
+# API and Contract Testing
 
-- Empty CSV with headers only.
-- Malformed encodings and delimiters.
-- Extremely wide datasets.
-- File-size enforcement.
-- NaN, infinite values, and mixed types.
-- Threshold boundaries exactly equal to limits.
-- Deterministic model metrics and random seeds.
-- Drift detection false positives and false negatives.
+API testing verifies externally visible behavior.
+
+Examples include:
+
+- request validation,
+- response contracts,
+- error handling,
+- serialization,
+- version compatibility.
+
+Typed contracts ensure that services exchange information consistently across platform boundaries.
+
+---
+
+# Integration Testing
+
+Integration tests verify collaboration between platform components.
+
+Examples include:
+
+- API to service interactions,
+- database access,
+- workflow execution,
+- evidence generation,
+- external service integration.
+
+The objective is to validate complete business scenarios rather than isolated functions.
+
+---
+
+# End-to-End Testing
+
+End-to-end testing verifies representative operational workflows.
+
+Examples include:
+
+- receiving operational information,
+- evaluating business rules,
+- generating analytics,
+- producing AI-assisted recommendations,
+- assembling supporting evidence,
+- completing workflow,
+- returning the final decision package.
+
+These tests confirm that major platform capabilities work together as expected.
+
+---
+
+# Quality Tooling
+
+Automated quality checks form part of the engineering workflow.
+
+Current tooling includes:
+
+- **Ruff** for linting and code quality.
+- **mypy** for static type checking.
+- **pytest** for automated test execution.
+- **Coverage reporting** to measure exercised code paths.
+
+Together these tools improve consistency before code reaches production environments.
+
+---
+
+# Evidence Produced by Testing
+
+Testing generates evidence including:
+
+- automated test results,
+- code coverage,
+- static analysis findings,
+- contract verification,
+- regression results,
+- CI/CD execution history.
+
+This evidence supports engineering reviews and continuous improvement.
+
+---
+
+# Continuous Integration
+
+Every significant change should automatically execute the quality pipeline.
+
+Typical activities include:
+
+- dependency installation,
+- linting,
+- type checking,
+- automated tests,
+- coverage reporting.
+
+A successful pipeline provides confidence that changes have not introduced known regressions.
+
+---
+
+# Relationship to Other Documents
+
+- **Definition of Done** defines completion criteria.
+- **Validation Methodology** explains how operational confidence is established.
+- **ADR-0005** defines the evidence-first architectural principle.
+- **Responsible Use** and **Model Governance Lifecycle** define governance expectations for analytical and AI-assisted capabilities.
+
+Testing is therefore one contributor to confidence. Combined with governance, evidence, monitoring, and human oversight, it helps produce trustworthy operational decisions.

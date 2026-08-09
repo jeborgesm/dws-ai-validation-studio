@@ -2,63 +2,200 @@
 
 ## Purpose
 
-Validation asks whether data, a model, and its operating context are fit for a stated purpose. It is broader than calculating accuracy and must include data quality, methodology, reproducibility, limitations, operational behavior, and governance evidence.
+This document defines how the Decision Support Platform establishes confidence that operational decisions are trustworthy, explainable, reproducible, and supported by evidence.
 
-![Validation lifecycle](../architecture/diagrams/04-validation-lifecycle.svg)
+Validation extends beyond software testing. It evaluates whether business rules, analytics, AI-assisted capabilities, workflows, evidence, and operational outcomes satisfy their intended business purpose.
 
-The lifecycle diagram emphasizes the project's evidence-first principle: validation produces inspectable evidence for human review rather than treating a single automated score as a final governance decision.
+---
 
-## Dataset validation dimensions
+# Validation Principles
 
-### Completeness
+Validation within the platform is guided by the following principles:
 
-Measures missing values at dataset and column level. A threshold is contextual: 20% is a Milestone 0 demonstration default, not a universal standard.
+- Begin with the business objective.
+- Validate business outcomes before technical implementation details.
+- Preserve evidence supporting every significant conclusion.
+- Use reproducible processes whenever practical.
+- Continuously improve using operational feedback.
 
-### Uniqueness
+Validation is therefore an ongoing operational activity rather than a single project milestone.
 
-Detects duplicate rows and, in future milestones, duplicate business keys.
+---
 
-### Validity
+# Validation Scope
 
-Future rules will evaluate allowed values, ranges, formats, and cross-field constraints.
+Validation may include one or more of the following areas:
 
-### Consistency
+- Business rule correctness
+- Data quality
+- API contracts
+- Analytics
+- AI-assisted recommendations
+- Workflow execution
+- Evidence generation
+- Security and governance controls
+- Operational performance
+- User experience
 
-Future checks will identify contradictions across fields, datasets, or time periods.
+The required scope depends on the capability being evaluated.
 
-### Timeliness
+---
 
-Future metadata will record observation dates, extraction dates, and acceptable age.
+# Validation Lifecycle
 
-### Representativeness
+```
+Business Objective
+        │
+        ▼
+Requirements
+        │
+        ▼
+Implementation
+        │
+        ▼
+Testing
+        │
+        ▼
+Operational Validation
+        │
+        ▼
+Monitoring
+        │
+        ▼
+Continuous Improvement
+```
 
-Model validation will compare the evaluation population with the intended operating population.
+Each stage contributes evidence that increases confidence in the final operational outcome.
 
-## Model validation dimensions
+---
 
-- **Correctness:** The implementation performs the intended computation.
-- **Performance:** Metrics are appropriate to the use case and evaluated on unseen data.
-- **Robustness:** Results remain acceptable under perturbations and edge cases.
-- **Reproducibility:** Data version, code version, configuration, environment, and random seeds are recorded.
-- **Explainability:** Explanations are generated and interpreted with known limitations.
-- **Fairness:** Relevant subgroup behavior is examined where lawful, ethical, and supported by the data.
-- **Monitoring:** Drift, degradation, anomalies, and operational failures are observable.
-- **Governance:** Ownership, purpose, approvals, limitations, and review history are documented.
+# Business Rule Validation
 
-## Pass/fail philosophy
+Business rules should be:
 
-A validation result is not a declaration that a model is universally safe. It means the evaluated evidence met the configured criteria for a defined purpose and version. Findings retain observed values and thresholds so reviewers can challenge the decision.
+- explicit,
+- deterministic where appropriate,
+- independently testable,
+- versioned,
+- traceable to business policy.
 
-## Current Milestone 0 rules
+Known organizational policies should remain visible rather than being hidden within AI prompts or model behavior.
 
-1. Each column's missing-value percentage must be less than or equal to the configured threshold.
-2. Duplicate-row percentage must be less than or equal to the configured threshold.
-3. Overall status passes only when every finding passes.
+---
 
-## Known limitations
+# Data Validation
 
-- Data types are inferred by pandas and may not reflect business semantics.
-- Duplicate rows are not the same as duplicate business entities.
-- Missingness may be meaningful rather than erroneous.
-- Thresholds are hard-coded defaults in Milestone 0.
-- No schema contract, outlier, range, sensitive-data, or drift checks exist yet.
+Data validation verifies that information entering the platform is suitable for operational use.
+
+Typical activities include:
+
+- completeness checks,
+- format validation,
+- consistency verification,
+- required field validation,
+- anomaly detection,
+- quality profiling.
+
+Poor-quality data should be detected as early as possible.
+
+---
+
+# Analytics Validation
+
+Analytics should be evaluated for:
+
+- correctness,
+- repeatability,
+- performance,
+- interpretability,
+- consistency across representative scenarios.
+
+Calculated metrics should be reproducible using the same inputs.
+
+---
+
+# AI-Assisted Capability Validation
+
+AI-assisted capabilities are evaluated according to their intended purpose.
+
+Depending on the feature, validation may include:
+
+- relevance,
+- accuracy,
+- consistency,
+- explainability,
+- prompt evaluation,
+- model version comparison,
+- human review.
+
+AI outputs contribute evidence to operational decisions but do not replace accountable business judgment.
+
+---
+
+# Workflow Validation
+
+Operational workflows should verify that:
+
+- required approvals occur,
+- evidence is preserved,
+- exceptions are handled,
+- decision routing is correct,
+- integrations behave as expected.
+
+---
+
+# Evidence Review
+
+Validation itself produces evidence, including:
+
+- automated test results,
+- analytical measurements,
+- review findings,
+- approval records,
+- monitoring observations,
+- operational metrics.
+
+Evidence should remain available for future analysis and audit.
+
+---
+
+# Operational Monitoring
+
+Confidence continues after deployment.
+
+Monitoring may evaluate:
+
+- decision quality,
+- exception rates,
+- rule effectiveness,
+- AI performance,
+- workflow efficiency,
+- operational trends.
+
+Monitoring results feed future improvements to the platform.
+
+---
+
+# Success Criteria
+
+A capability is considered validated when there is sufficient evidence to conclude that it:
+
+- satisfies its documented business objective,
+- behaves consistently,
+- supports governance expectations,
+- produces trustworthy operational results,
+- can be explained and reproduced when appropriate.
+
+Validation is therefore based on accumulated evidence rather than a single test result.
+
+---
+
+# Relationship to Other Documents
+
+- **Testing Strategy** defines how software behavior is verified.
+- **Definition of Done** defines completion criteria.
+- **Responsible Use** defines principles for accountable AI-assisted decision support.
+- **Model Governance Lifecycle** defines governance across the capability lifecycle.
+- **ADR-0005** establishes the evidence-first architectural principle.
+
+Together these documents define how the Decision Support Platform establishes confidence in operational decisions throughout their lifecycle.

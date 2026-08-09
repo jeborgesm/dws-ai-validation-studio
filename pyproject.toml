@@ -3,9 +3,9 @@ requires = ["hatchling>=1.27,<2"]
 build-backend = "hatchling.build"
 
 [project]
-name = "dws-ai-validation-studio"
+name = "decision-support-platform"
 version = "0.1.0"
-description = "Enterprise-style AI/ML validation and governance learning platform"
+description = "Enterprise reference implementation for trustworthy operational decision systems"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
@@ -29,10 +29,10 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/dws_ai_validation"]
+packages = ["src/decision_support_platform"]
 
 [tool.pytest.ini_options]
-addopts = "-q --cov=dws_ai_validation --cov-report=term-missing"
+addopts = "-q --cov=decision_support_platform --cov-report=term-missing"
 testpaths = ["tests"]
 
 [tool.ruff]
@@ -46,4 +46,4 @@ select = ["E", "F", "I", "B", "UP", "SIM"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
-packages = ["dws_ai_validation"]
+packages = ["decision_support_platform"]

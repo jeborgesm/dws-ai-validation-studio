@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from dws_ai_validation.core.profiler import profile_csv
+from decision_support_platform.core.profiler import profile_csv
 
 
 def test_profile_csv_identifies_missing_values_and_duplicates(tmp_path: Path) -> None:

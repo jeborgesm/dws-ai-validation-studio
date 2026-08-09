@@ -1,72 +1,221 @@
 # Threat Model
 
-## Scope
+## Purpose
 
-This document identifies material risks for the public proof-of-concept implementation. It is not a formal certification or complete production security assessment.
+This document identifies the primary technical, operational, and governance risks relevant to the Decision Support Platform.
 
-## Assets
+The objective is not to eliminate every risk, but to understand, reduce, monitor, and manage risks that could affect trustworthy operational decisions.
 
-- Uploaded datasets.
-- Model artifacts and validation reports.
-- Governance records and approvals.
-- Credentials for cloud and enterprise integrations.
-- Source code and CI/CD pipeline integrity.
-- Audit history.
+Threat modeling is an ongoing engineering activity that evolves with the platform.
 
-## Threat actors
+---
 
-- Accidental user misuse.
-- Malicious anonymous uploaders in a future hosted environment.
-- Compromised dependencies.
-- Unauthorized repository or cloud access.
-- Insider misuse in a hypothetical enterprise deployment.
+# Security Objectives
 
-## Key threats and controls
+The platform should protect:
 
-### Sensitive data disclosure
+- confidentiality of proprietary operational information,
+- integrity of decisions and supporting evidence,
+- availability of decision-support services,
+- authenticity of users and systems,
+- traceability of significant actions.
 
-**Risk:** Confidential or personal data is uploaded or committed.
+These objectives influence architecture, implementation, deployment, and operations.
 
-**Controls:** Public/synthetic-data policy, source-control ignores, documentation warnings, future data-classification checks, retention limits, and access controls.
+---
 
-### Malicious file upload
+# Architectural Assets
 
-**Risk:** Oversized, malformed, or crafted files exhaust resources or exploit parsers.
+Key assets include:
 
-**Current controls:** CSV extension check, empty-file rejection, temporary-file cleanup, controlled exception mapping.
+- business rules,
+- analytical models,
+- AI-assisted services,
+- evidence and decision history,
+- workflow state,
+- configuration,
+- source code,
+- deployment pipelines,
+- audit records.
 
-**Planned controls:** Content sniffing, file-size limits, streaming, parser limits, isolated workers, malware scanning, quotas, and timeouts.
+Each asset may require different protections depending on the deployment environment.
 
-### Formula or content injection
+---
 
-**Risk:** CSV cells later rendered in spreadsheets or HTML contain executable formulas or scripts.
+# Threat Categories
 
-**Planned controls:** Output encoding, spreadsheet formula neutralization, content-security policy, and safe templating.
+## Unauthorized Access
 
-### Dependency compromise
+Potential risks include:
 
-**Risk:** A malicious or vulnerable package enters the build.
+- stolen credentials,
+- excessive permissions,
+- privilege escalation,
+- weak authentication.
 
-**Controls:** Bounded dependency ranges, automated dependency review planned, lock files planned, minimal dependency set, CI scanning planned.
+Mitigations:
 
-### Unauthorized cloud actions
+- role-based access control,
+- least privilege,
+- strong authentication,
+- periodic access review.
 
-**Risk:** Broad AWS permissions permit data exposure or resource abuse.
+---
 
-**Planned controls:** Least-privilege IAM, separate environments, short-lived credentials, encryption, private networking where justified, CloudTrail, budget alerts, and explicit teardown procedures.
+## Data Integrity
 
-### Misleading validation claims
+Potential risks include:
 
-**Risk:** A passing report is interpreted as proof that a model is safe or compliant.
+- unauthorized modification,
+- corrupted datasets,
+- altered evidence,
+- configuration tampering.
 
-**Controls:** Purpose-bound reports, limitations, human approval boundary, recorded thresholds, versioned evidence, and responsible-use labeling.
+Mitigations:
 
-### Audit tampering
+- immutable audit history,
+- version control,
+- validation,
+- integrity checks,
+- controlled deployments.
 
-**Risk:** Findings or approvals are altered without traceability.
+---
 
-**Planned controls:** Append-oriented audit events, immutable artifact hashes, identity attribution, timestamps, and restricted update paths.
+## AI and Analytics Risks
 
-## Residual risk
+Potential risks include:
 
-Milestone 0 is suitable for local demonstration and validation with safe datasets. It is not suitable for untrusted public hosting or regulated production data.
+- model drift,
+- poor data quality,
+- unsupported recommendations,
+- prompt manipulation,
+- hallucinated content,
+- outdated models.
+
+Mitigations:
+
+- monitoring,
+- evidence capture,
+- explainability,
+- human review,
+- versioned models,
+- performance evaluation.
+
+AI outputs are treated as advisory evidence rather than unquestioned authority.
+
+---
+
+## Workflow Risks
+
+Potential risks include:
+
+- skipped approvals,
+- incomplete evidence,
+- incorrect routing,
+- failed integrations,
+- manual process errors.
+
+Mitigations:
+
+- workflow validation,
+- approval checkpoints,
+- exception handling,
+- monitoring,
+- operational alerts.
+
+---
+
+## Supply Chain Risks
+
+Potential risks include:
+
+- vulnerable dependencies,
+- compromised packages,
+- insecure build processes,
+- outdated libraries.
+
+Mitigations:
+
+- dependency scanning,
+- automated updates,
+- CI validation,
+- code review,
+- reproducible builds.
+
+---
+
+## Operational Risks
+
+Potential risks include:
+
+- service outages,
+- infrastructure failures,
+- database failures,
+- cloud service interruptions,
+- deployment errors.
+
+Mitigations:
+
+- monitoring,
+- backups,
+- rollback procedures,
+- health checks,
+- disaster recovery planning.
+
+---
+
+# Trust Boundaries
+
+Important trust boundaries include:
+
+- public repository vs proprietary operational information,
+- external clients vs platform APIs,
+- AI services vs deterministic business rules,
+- automated recommendations vs accountable human decisions,
+- development, test, and production environments.
+
+These boundaries guide architectural decisions and deployment practices.
+
+---
+
+# Monitoring and Detection
+
+Threats should be monitored using evidence such as:
+
+- logs,
+- metrics,
+- traces,
+- audit records,
+- workflow events,
+- security alerts,
+- unusual decision patterns.
+
+Monitoring supports both operational reliability and continuous improvement.
+
+---
+
+# Residual Risk
+
+No engineering solution completely eliminates risk.
+
+The platform therefore combines:
+
+- preventive controls,
+- detective controls,
+- corrective actions,
+- governance,
+- evidence,
+- human oversight.
+
+Residual risks should be reviewed periodically as the platform evolves.
+
+---
+
+# Relationship to Other Documents
+
+- **Responsible Use** defines accountable use of AI-assisted capabilities.
+- **Model Governance Lifecycle** governs analytical capabilities throughout their lifecycle.
+- **ADR-0004** defines data boundaries.
+- **ADR-0005** establishes the evidence-first architectural principle.
+
+Threat modeling supports trustworthy operational decisions by identifying risks before they become operational failures.

@@ -1,61 +1,78 @@
 # Engineering Justification Guide
 
-This guide records the engineering rationale behind the project: what was built, why key decisions were made, which trade-offs were accepted, and where the system is intentionally incomplete.
+## Purpose
 
-## Thirty-second explanation
+This guide explains the engineering rationale behind the major technology decisions used in the Decision Support Platform.
 
-DWS AI Validation Studio is an enterprise-style Python platform that validates datasets and machine-learning models, produces model-governance evidence, and will integrate with AWS SageMaker, PostgreSQL, Power BI, Power Automate, and SharePoint. It is built publicly with synthetic data so every capability is supported by inspectable code, tests, architecture decisions, and documentation.
+The platform exists to demonstrate how organizations can build trustworthy operational decision systems by combining business rules, analytics, AI-assisted capabilities, governance, evidence, and modern engineering practices.
 
-## Why Python?
+Every technology included in the platform should solve a defined business or engineering problem. Technologies are selected because they contribute to the platform's objectives—not because they are new or popular.
 
-Python provides direct access to the data and ML ecosystem used by pandas, scikit-learn, SHAP, and SageMaker. Using Python in the core keeps the implementation aligned with the data and ML ecosystem rather than introducing an unnecessary .NET abstraction around Python-first tooling.
+---
 
-## Why FastAPI?
+# Engineering Principles
 
-FastAPI uses Python type hints and Pydantic to produce validated contracts and OpenAPI documentation with little ceremony. It allows the project to demonstrate disciplined service development rather than isolated scripts.
+Technology choices should:
 
-## Why not begin with SageMaker?
+- Support a documented business capability.
+- Improve maintainability or reliability.
+- Produce measurable engineering value.
+- Integrate cleanly with the platform architecture.
+- Remain explainable to technical and business stakeholders.
 
-Cloud tooling should not obscure the underlying validation concepts. The project first establishes deterministic local behavior, tests, and evidence. SageMaker is introduced after the data and model lifecycle is understood, making the cloud implementation easier to explain and less dependent on vendor-specific terminology.
+---
 
-## Why a modular monolith?
+# Current Technology Decisions
 
-The domain boundaries are still being discovered. A modular monolith minimizes distributed complexity while preserving separations that can later support extraction if scale, security, or release independence justify it.
+## .NET
 
-## Why are the Milestone 0 thresholds simplistic?
+Primary enterprise application platform responsible for core business services and long-term maintainability.
 
-They are intentionally transparent demonstration defaults. The repository records observed values and thresholds and explicitly states that real thresholds depend on business purpose, data semantics, and risk. A later milestone will make plans configurable and versioned.
+## Python & FastAPI
 
-## What makes this model validation rather than only data profiling?
+Used where analytics, scientific computing, AI-assisted capabilities, and data-oriented processing provide clear advantages.
 
-Milestone 0 establishes the data-validation foundation. Later milestones add holdout evaluation, metrics, robustness, explainability, fairness, reproducibility, drift, governance states, and monitoring. The roadmap and data structures are designed around the complete lifecycle.
+## PostgreSQL
 
-## What would prevent production use today?
+Operational data store supporting future persistence, workflow state, evidence, and reporting.
 
-No authentication, authorization, persistent audit store, file-size limit, malware scanning, content sniffing, object storage, secret management, cloud controls, or formal validation policy exists yet. The repository labels these gaps rather than implying production readiness.
+## GitHub Actions
 
-## How does prior enterprise experience transfer?
+Provides automated engineering quality through continuous integration.
 
-The project applies established engineering practices—architecture, API design, SQL, testing, requirements analysis, auditability, workflow, security thinking, and governance documentation—to the Python and AI/ML ecosystem. The implementation itself provides the evidence; this guide supplies the rationale and context needed to evaluate those decisions.
+## Ruff, mypy and pytest
 
-## Hard questions to expect
+Provide automated quality validation through linting, static analysis, and testing.
 
-### Is a model card proof of compliance?
+---
 
-No. It is a structured communication artifact. Its quality depends on accurate evidence, appropriate review, and the governing policy.
+# Future Enterprise Integrations
 
-### Does explainability prove fairness or correctness?
+Planned milestones include integration with:
 
-No. Explainability can help investigate behavior, but it can be unstable, approximate, and easy to misinterpret. It is one part of validation evidence.
+- AWS (including SageMaker)
+- Power BI
+- Power Automate
+- SharePoint Online
 
-### Can drift be detected without labels?
+These technologies are included because they represent common enterprise capabilities that complement the decision lifecycle.
 
-Input or prediction distribution drift can be detected without labels, but actual performance degradation usually requires delayed ground truth or useful proxies.
+---
 
-### Why is accuracy not enough?
+# Decision Framework
 
-Accuracy can hide class imbalance and unequal error costs. Metrics must match the decision context, such as precision, recall, F1, ROC-AUC, PR-AUC, calibration, and subgroup performance.
+Before introducing any technology, answer:
 
-### What is the difference between verification and validation?
+1. What business capability does it support?
+2. Why is it preferable to existing alternatives?
+3. How does it fit the architecture?
+4. How will success be measured?
+5. What operational considerations does it introduce?
 
-Verification asks whether the system was built according to specification. Validation asks whether it is fit for its intended purpose and operating context.
+If these questions cannot be answered clearly, the technology should not be introduced.
+
+---
+
+# Summary
+
+Engineering decisions within the Decision Support Platform are driven by business objectives, architectural consistency, operational value, and long-term maintainability.
