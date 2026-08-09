@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from dws_ai_validation.main import app
+from decision_support_platform.main import app
 
 client = TestClient(app)
 

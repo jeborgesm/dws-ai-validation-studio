@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from dws_ai_validation.core.models import ColumnProfile, DatasetProfile, ValidationFinding
+from decision_support_platform.core.models import ColumnProfile, DatasetProfile, ValidationFinding
 
 DEFAULT_MAX_MISSING_PERCENTAGE = 20.0
 DEFAULT_MAX_DUPLICATE_PERCENTAGE = 5.0

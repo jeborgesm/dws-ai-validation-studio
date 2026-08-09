@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from dws_ai_validation.api.routes import router
+from decision_support_platform.api.routes import router
 
 app = FastAPI(
     title="Decision Support Platform",

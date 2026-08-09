@@ -4,8 +4,8 @@ from typing import Annotated
 
 from fastapi import APIRouter, File, HTTPException, UploadFile, status
 
-from dws_ai_validation.core.models import DatasetProfile
-from dws_ai_validation.core.profiler import profile_csv
+from decision_support_platform.core.models import DatasetProfile
+from decision_support_platform.core.profiler import profile_csv
 
 router = APIRouter()
 

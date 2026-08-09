@@ -29,10 +29,10 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/dws_ai_validation"]
+packages = ["src/decision_support_platform"]
 
 [tool.pytest.ini_options]
-addopts = "-q --cov=dws_ai_validation --cov-report=term-missing"
+addopts = "-q --cov=decision_support_platform --cov-report=term-missing"
 testpaths = ["tests"]
 
 [tool.ruff]
@@ -46,4 +46,4 @@ select = ["E", "F", "I", "B", "UP", "SIM"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
-packages = ["dws_ai_validation"]
+packages = ["decision_support_platform"]
