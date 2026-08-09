@@ -1,1 +1,1 @@
-"""DWS AI Validation Studio."""
+"""Decision Support Platform."""

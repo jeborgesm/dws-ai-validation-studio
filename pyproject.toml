@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "dws-ai-validation-studio"
 version = "0.1.0"
-description = "Enterprise-style AI/ML validation and governance learning platform"
+description = "Enterprise reference implementation for trustworthy operational decision systems"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }

@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from dws_ai_validation.api.routes import router
 
 app = FastAPI(
-    title="DWS AI Validation Studio",
+    title="Decision Support Platform",
     summary="Dataset, model, and governance validation services.",
     version="0.1.0",
 )
