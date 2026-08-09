@@ -2,7 +2,7 @@
 
 > **Building trustworthy operational decision systems through business rules, analytics, AI, governance, and evidence.**
 
-[![CI](https://github.com/jeborgesm/dws-ai-validation-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/jeborgesm/dws-ai-validation-studio/actions/workflows/ci.yml)
+[![CI](https://github.com/jeborgesm/decision-support-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/jeborgesm/decision-support-platform/actions/workflows/ci.yml)
 
 Decision Support Platform is an enterprise reference implementation that demonstrates how important operational decisions can be supported by deterministic business rules, analytics, AI-assisted recommendations, human review, governance, and traceable evidence.
 

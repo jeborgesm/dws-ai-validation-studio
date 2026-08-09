@@ -3,7 +3,7 @@ requires = ["hatchling>=1.27,<2"]
 build-backend = "hatchling.build"
 
 [project]
-name = "dws-ai-validation-studio"
+name = "decision-support-platform"
 version = "0.1.0"
 description = "Enterprise reference implementation for trustworthy operational decision systems"
 readme = "README.md"
