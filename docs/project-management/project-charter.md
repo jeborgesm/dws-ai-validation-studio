@@ -1,60 +1,75 @@
 # Project Charter
 
-## Project name
-
-DWS AI Validation Studio
+# Decision Support Platform
 
 ## Mission
 
-Build a public, enterprise-style reference implementation that demonstrates practical capability in Python, AI/ML testing and validation, model governance, explainability, drift monitoring, AWS SageMaker, data engineering, workflow automation, and audit-ready documentation.
+Build a public enterprise reference implementation that demonstrates how trustworthy operational decisions can be supported through business rules, analytics, AI-assisted capabilities, governance, workflow, and evidence.
 
-## Why this project exists
+The repository emphasizes sound engineering practices, transparent architecture, and reproducible implementation while using synthetic or publicly distributable data.
 
-The project was created to close demonstrable experience gaps without relying on unverified claims. Every important skill should be supported by inspectable source code, automated tests, diagrams, decision records, generated evidence, and a clear explanation of tradeoffs.
+---
 
-## Primary outcomes
+# Objectives
 
-- A runnable Python validation service.
-- Reproducible dataset and model validation runs.
-- Model inventories, model cards, validation plans, and reports.
-- Explainability, fairness, drift, and anomaly evidence.
-- AWS/SageMaker deployment and monitoring examples.
-- SQL-backed audit history.
-- Power BI and Power Automate integration examples.
-- A public GitHub repository suitable for technical interviews and portfolio review.
+- Demonstrate enterprise software architecture.
+- Implement a modular Decision Support Platform.
+- Produce explainable and evidence-supported operational decisions.
+- Integrate modern enterprise technologies incrementally.
+- Document engineering decisions and tradeoffs.
+- Maintain production-quality engineering standards throughout the project.
 
-## Non-goals
+---
 
-- Producing a model suitable for real financial, employment, medical, or regulatory decisions.
-- Reproducing any confidential proprietary organizational or customer process.
-- Claiming production-grade security certification.
-- Building a general-purpose AutoML platform.
-- Replacing human governance or domain review with automated scoring.
+# Guiding Principles
 
-## Intended audience
+- Business purpose before technology.
+- Evidence before conclusions.
+- Human accountability for important decisions.
+- Clear architecture and documentation.
+- Incremental delivery through well-defined milestones.
 
-- Hiring managers evaluating Python and AI/ML validation capability.
-- Engineers reviewing architecture and implementation choices.
-- Governance, risk, and compliance practitioners evaluating traceability.
-- Engineers and technical reviewers using the repository as a reference for implementation patterns, architectural rationale, and reproducible validation evidence.
+---
 
-## Success criteria
+# Planned Technology Roadmap
 
-A reviewer should be able to answer the following using repository evidence:
+The platform will progressively incorporate capabilities such as:
 
-1. What problem does the system solve?
-2. Why were the chosen technologies used?
-3. How is data validated before model use?
-4. How are model claims tested and documented?
-5. How are limitations, risks, and drift represented?
-6. How are results reproduced and audited?
-7. Which controls are implemented, planned, or explicitly out of scope?
+- PostgreSQL
+- AWS services (including SageMaker)
+- Power BI
+- Power Automate
+- SharePoint Online
+- AI-assisted services
+- Workflow orchestration
+- Enterprise monitoring
 
-## Delivery principles
+Each addition must support a documented business capability and align with the platform architecture.
 
-- Working vertical slices before broad scaffolding.
-- Evidence over assertions.
-- Documentation in the same pull request as behavior changes.
-- Secure and privacy-conscious defaults.
-- Small, reversible architectural decisions.
-- Honest labeling of demonstration versus production readiness.
+---
+
+# Success Measures
+
+The project is successful when it demonstrates:
+
+- Clear business purpose
+- Well-defined architecture
+- High engineering quality
+- Strong governance
+- Explainable operational decisions
+- Reproducible evidence
+- Enterprise-ready documentation
+
+---
+
+# Public Repository Boundary
+
+The repository is a public reference implementation.
+
+It uses synthetic or publicly distributable data and documents enterprise engineering practices without exposing proprietary organizational information.
+
+---
+
+# Vision
+
+Create a Decision Support Platform that shows how modern organizations can build trustworthy operational decision systems while maintaining strong engineering discipline, governance, and operational transparency.
